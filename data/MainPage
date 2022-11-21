@@ -1,0 +1,7 @@
+로그인 후 넘어가는 메인화면입니다. <br />
+
+<input type="text" /> <button class="search" type="button">검색</button> <br />
+
+<ul>
+    <li><img class="bookimg" src="data/src/sample.jpg" alt="샘플 이미지">
+</ul>
