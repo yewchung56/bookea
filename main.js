@@ -13,9 +13,21 @@ var app = http.createServer(function (request, response) {
 
   if (pathname === "/") {
     if (queryData.id === undefined) {
-      fs.readFile(`data/${queryData.id}`, "utf8", function (err, description) {
+      fs.readdir("./data", function (err, filelist) {
+        console.log(filelist);
         var title = "Welcome";
         var description = "Hello, Bookea!!";
+
+        var list = "<ul>";
+        var i = 0;
+
+        while (i < filelist.length) {
+          list =
+            list + `<li><a href="/?id=${filelist[i]}">${filelist[i]}</a></li>`;
+          i = i + 1;
+        }
+        list = list + "</ul>"; //파일 이름 받아서 반복문으로 목록을 출력
+
         var template = `
       <!doctype html>
     <html>
@@ -25,13 +37,10 @@ var app = http.createServer(function (request, response) {
     </head>
     <body>
       <h1><a href="/">Bookea</a></h1>
+      ${list}
       <h2>${title}</h2>
       <p>${description}</p>
-      <ul>
-        <li><a href="/?id=Join">회원가입</a></li>
-        <li><a href="/?id=Login">로그인</a></li>
-        <li><a href="/?id=MainPage">메인화면</a></li>
-      </ul>
+      
       
     </body>
     </html>
@@ -41,7 +50,17 @@ var app = http.createServer(function (request, response) {
         response.end(template);
       });
     } else {
-      fs.readFile(`data/${queryData.id}`, "utf8", function (err, description) {
+      fs.readdir("./data", function (err, filelist) {
+        console.log(filelist);
+        var list = "<ul>";
+        var i = 0;
+        while (i < filelist.length) {
+          list =
+            list + `<li><a href="/?id=${filelist[i]}">${filelist[i]}</a></li>`;
+          i = i + 1;
+        }
+        list = list + "</ul>"; //파일 이름 받아서 반복문으로 목록을 출력
+
         var title = queryData.id;
         var template = `
       <!doctype html>
