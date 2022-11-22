@@ -1,42 +1,76 @@
-<!-- function templateHTML(title, list, body){
-    return ` -->
-<!DOCTYPE html>
-<html lang="ko">
-  <head>
-    <meta charset="utf-8" />
-    <meta content="width=device-width, initial-scale=1.0" />
-    <style>
-      body {
-        background: #f3dc63;
-      }
-      h1 {
-        color: #2358e1;
-      }
-    </style>
-    <title>BOOKEA1 - ${title}</title>
-  </head>
-  <body>
-    <h1>BOOKEA</h1>
-    <input id="query" type="text" />
-    <button id="search">검색</button>
-    <div></div>
-    <!--  <div style="height: 50px;"></div>
+검색 결과가 나오는 페이지
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" />
+  <style>
+    body {
+      background: #f3dc63;
+    }
+    h1 {
+      color: #2358e1;
+    }
+  </style>
+  <title>BOOKEA1 - ${title}</title>
+</head>
+<body>
+  <h1>BOOKEA</h1>
+  <input id="query" type="text" />
+  <button id="search">검색</button>
+  <div></div>
+  <!--  <div style="height: 50px;"></div>
         <h2>검색결과</h2>
         <h3>책 표지</h3>
         <p></p> -->
 
-    <script
-      src="https://code.jquery.com/jquery-3.6.1.js"
-      integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
-      crossorigin="anonymous"
-    ></script>
+  <script
+    src="https://code.jquery.com/jquery-3.6.1.js"
+    integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
+    crossorigin="anonymous"
+  ></script>
 
-    <script>
-      $(document).ready(function () {
-        var pageNum = 1;
+  <script>
+    $(document).ready(function () {
+      var pageNum = 1;
 
-        $("#search").click(function () {
-          $("div").html("");
+      $("#search").click(function () {
+        $("div").html("");
+
+        $.ajax({
+          method: "GET",
+          url: "https://dapi.kakao.com/v3/search/book?target=title",
+          data: { query: $("#query").val(), page: pageNum },
+          headers: {
+            Authorization: "KakaoAK 5032971dfe6ef4c1396c474be397c09c",
+          },
+        }).done(function (msg) {
+          console.log(msg.documents[0].title);
+          console.log(msg.documents[0].thumbnail);
+          for (var i = 0; i < 10; i++) {
+            $("div").append(
+              "<strong><a ref = '" +
+                msg.documents[i].uri +
+                "'>" +
+                msg.documents[i].title +
+                "</a></strong><br>"
+            );
+            $("div").append(
+              "<strong>저자:</strong> " + msg.documents[i].authors + "<br>"
+            );
+            $("div").append(
+              "<strong>출판사:</strong>" + msg.documents[i].publisher + "<br>"
+            );
+            $("div").append(
+              "<img src = '" + msg.documents[i].thumbnail + "'/><br>"
+            );
+          }
+        });
+      });
+      $(window).scroll(function () {
+        if (
+          Math.ceil($(window).scrollTop()) + $(window).height() >=
+          $(document).height()
+        ) {
+          pageNum++;
 
           $.ajax({
             method: "GET",
@@ -46,8 +80,7 @@
               Authorization: "KakaoAK 5032971dfe6ef4c1396c474be397c09c",
             },
           }).done(function (msg) {
-            console.log(msg.documents[0].title);
-            console.log(msg.documents[0].thumbnail);
+            console.log(msg);
             for (var i = 0; i < 10; i++) {
               $("div").append(
                 "<strong><a ref = '" +
@@ -67,47 +100,8 @@
               );
             }
           });
-        });
-        $(window).scroll(function () {
-          if (
-            Math.ceil($(window).scrollTop()) + $(window).height() >=
-            $(document).height()
-          ) {
-            pageNum++;
-
-            $.ajax({
-              method: "GET",
-              url: "https://dapi.kakao.com/v3/search/book?target=title",
-              data: { query: $("#query").val(), page: pageNum },
-              headers: {
-                Authorization: "KakaoAK 5032971dfe6ef4c1396c474be397c09c",
-              },
-            }).done(function (msg) {
-              console.log(msg);
-              for (var i = 0; i < 10; i++) {
-                $("div").append(
-                  "<strong><a ref = '" +
-                    msg.documents[i].uri +
-                    "'>" +
-                    msg.documents[i].title +
-                    "</a></strong><br>"
-                );
-                $("div").append(
-                  "<strong>저자:</strong> " + msg.documents[i].authors + "<br>"
-                );
-                $("div").append(
-                  "<strong>출판사:</strong>" +
-                    msg.documents[i].publisher +
-                    "<br>"
-                );
-                $("div").append(
-                  "<img src = '" + msg.documents[i].thumbnail + "'/><br>"
-                );
-              }
-            });
-          }
-        });
+        }
       });
-    </script>
-  </body>
-</html>
+    });
+  </script>
+</body>
