@@ -1,19 +1,13 @@
 
-* {
-	margin:0;
-	padding:0;
-	color:#000;
-	font-family: 'ZCOOL QingKe HuangYou', cursive;
-	box-sizing: border-box;
-}
-
-.fn-font {
-	font-family: 'Noto Sans KR', sans-serif;
-}
-
 ul {
 	list-style: none;
 }
+li {
+	display: inline-block;
+	margin-left: 16px;
+	font-size: 18px;
+	font-weight: bold;
+  }
 
 a {
 	text-decoration: none;
@@ -24,6 +18,7 @@ a {
 	margin:0 auto;
 }
 header {
+	background: deeppink;
 	width:100%;
 	height:80px;
 	display: flex;

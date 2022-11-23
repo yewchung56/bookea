@@ -3,19 +3,54 @@
   <meta charset="utf-8" />
   <meta content="width=device-width, initial-scale=1.0" />
   <style>
+    header {
+	background: white;
+  border-color: #2358e1;
+	width:100%;
+	height:80px;
+	display: flex;
+	align-items: center;
+
+}
     body {
       background: #f3dc63;
+      margin: 0;
+      align-items: center;
+     
     }
     h1 {
+      
       color: #2358e1;
+      font-family: 'Comfortaa';
+      font-style: normal;
+      font-weight: 400;
+      font-size: 28.4444px;
+      line-height: 32px;
+      /* identical to box height */
+      display: flex;
+      align-items: center;
+      text-align: center;
+      letter-spacing: -0.015em;
+    }
+    strong{
+      font-family: 'Comfortaa';
+      font-style: normal;
+      font-weight: 300;
+      font-size: 16px;
+      line-height: 22px;
+      display: flex;
+      align-items: center;
+      text-align: center;
     }
   </style>
   <title>BOOKEA1 - ${title}</title>
 </head>
 <body>
+  <header>
   <h1>BOOKEA</h1>
   <input id="query" type="text" />
   <button id="search">검색</button>
+</header>
   <div></div>
   <!--  <div style="height: 50px;"></div>
         <h2>검색결과</h2>
@@ -47,17 +82,17 @@
           console.log(msg.documents[0].thumbnail);
           for (var i = 0; i < 10; i++) {
             $("div").append(
-              "<strong><a ref = '" +
+              "<strong>제목: <a ref = '" +
                 msg.documents[i].uri +
                 "'>" +
                 msg.documents[i].title +
                 "</a></strong><br>"
             );
             $("div").append(
-              "<strong>저자:</strong> " + msg.documents[i].authors + "<br>"
+              "<strong>저자: </strong> " + msg.documents[i].authors + "<br>"
             );
             $("div").append(
-              "<strong>출판사:</strong>" + msg.documents[i].publisher + "<br>"
+              "<strong>출판사: </strong>" + msg.documents[i].publisher + "<br>"
             );
             $("div").append(
               "<img src = '" + msg.documents[i].thumbnail + "'/><br>"
@@ -83,7 +118,7 @@
             console.log(msg);
             for (var i = 0; i < 10; i++) {
               $("div").append(
-                "<strong><a ref = '" +
+                "<strong>제목:<a ref = '" +
                   msg.documents[i].uri +
                   "'>" +
                   msg.documents[i].title +
