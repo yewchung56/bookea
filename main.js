@@ -1,6 +1,7 @@
 var http = require("http");
 var fs = require("fs");
 var url = require("url");
+var qs = require("querystring");
 
 var app = http.createServer(function (request, response) {
   var _url = request.url;
@@ -12,11 +13,11 @@ var app = http.createServer(function (request, response) {
   //console.log(url.parse(_url, true).pathname);
 
   if (pathname === "/") {
+    //메인 화면
     if (queryData.id === undefined) {
       var filename = ["회원가입", "로그인"];
       fs.readdir("./data", function (err, filelist) {
         console.log(filelist);
-        var title = "여러분의 책을 기록하세요~";
         //var description = "Hello, Bookea!!";
 
         var list = "<ul>";
@@ -40,14 +41,12 @@ var app = http.createServer(function (request, response) {
               background: #f3dc63;
             }
             h1 {
+              padding-left: 40px;
               padding-top: 30px;
               text-align: center;
               justify-content: center;
               text-decoration-line: none;
               color: #2358e1;
-            }
-            h2{
-              text-align: center;
               padding-bottom: 80px;
             }
             .list{
@@ -60,13 +59,13 @@ var app = http.createServer(function (request, response) {
               border-radius: 30px;
               display: flex;
               justify-content: center;
-              vertical-align: middle;
             }
             
             h1 > a{ 
+              justify-content : center;
               text-decoration-line: none;
               color: #2358e1;
-              font-size: 70px;
+              font-size: 80px;
             }
             .list > a{
               padding-top: 5px;
@@ -80,12 +79,12 @@ var app = http.createServer(function (request, response) {
               margin:0 auto; 
             }
           </style>
-          <title>Bookea - ${title}</title>
+          <title>Bookea</title>
           <meta charset="utf-8">
         </head>
         <body>
           <h1><a href="/">Bookea</a></h1>
-          <h2>${title}</h2>
+          
           
           ${list}
           
@@ -136,6 +135,20 @@ var app = http.createServer(function (request, response) {
         );
       });
     }
+  } else if (pathname === "/create_account") {
+    var body = "";
+    request.on("data", function (data) {
+      //웹 브라우저가 post로 데이터를 전송하면 엄청난 큰 데이터 일 때를 대비해서 이런 사용방법 제공 어떤 특정한 양의 조각들을 수신할 때마다 서버는 callback함수를 호출하도록 함
+      body = body + data; //body에 callback이 실행될 때마다 데이터를 추가
+    });
+    request.on("end", function () {
+      //들어올 정보가 더이상 없을 때 end에 해당되는 callback이 수신되었을 때 정보가 끝났음을 알 수 있음
+      var post = qs.parse(body); //parse 함수를 통해 정보를 객체화
+      var id = post.id;
+      console.log(post.id); //post를 통해 전송된 데이터를 가져올 수 있음
+    });
+    response.writeHead(200);
+    response.end("success");
   } else {
     response.writeHead(404);
     response.end("Not found");
