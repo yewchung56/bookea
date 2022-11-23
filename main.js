@@ -146,6 +146,7 @@ var app = http.createServer(function (request, response) {
       var post = qs.parse(body); //parse 함수를 통해 정보를 객체화
       var id = post.id;
       console.log(post.id); //post를 통해 전송된 데이터를 가져올 수 있음
+      console.log(post.password);
     });
     response.writeHead(200);
     response.end("success");
