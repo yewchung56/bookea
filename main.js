@@ -37,6 +37,7 @@ var app = http.createServer(function (request, response) {
         
         <head>
           <style>
+            @import url('https://fonts.googleapis.com/css2?family=Comfortaa&display=swap');
             body {
               background: #f3dc63;
             }
@@ -66,6 +67,7 @@ var app = http.createServer(function (request, response) {
               text-decoration-line: none;
               color: #2358e1;
               font-size: 80px;
+              font-family: 'Comfortaa', cursive;
             }
             .list > a{
               padding-top: 5px;
@@ -79,11 +81,11 @@ var app = http.createServer(function (request, response) {
               margin:0 auto; 
             }
           </style>
-          <title>Bookea</title>
+          <title>BOOKEA</title>
           <meta charset="utf-8">
         </head>
         <body>
-          <h1><a href="/">Bookea</a></h1>
+          <h1><a href="/">BOOKEA</a></h1>
           
           
           ${list}
@@ -124,12 +126,14 @@ var app = http.createServer(function (request, response) {
         <!doctype html>
       <html>
       <style>
+            @import url('https://fonts.googleapis.com/css2?family=Comfortaa&display=swap');
             body {
               background: #f3dc63;
             }
             h1 {
               margin-top: 0px;
               font-size: 50px;
+              font-family: 'Comfortaa', cursive;
             }
             h1 > a{
               text-decoration-line: none;
@@ -148,7 +152,7 @@ var app = http.createServer(function (request, response) {
         <meta charset="utf-8">
       </head>
       <body>
-        <h1><a href="/">Bookea</a></h1>
+        <h1><a href="/">BOOKEA</a></h1>
         <div class="icon">${list}</div>
         <p>${description}</p>
       </body>
