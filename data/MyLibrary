@@ -1,1 +1,45 @@
-내 서재 페이지
+<style>
+  .center {
+    width: 100%;
+    height: 90%;
+    padding-top: 30;
+    background-color: #fffbeb;
+  }
+  .bar {
+    width: 95%;
+    height: 20px;
+    background-color: #fff9d8;
+    margin: auto;
+    box-shadow: 5px 5px 10px grey;
+    margin-bottom: 20px;
+  }
+  .book {
+    width: 95%;
+    height: 200px;
+  }
+  img {
+    padding-left: 20px;
+    margin: auto;
+  }
+</style>
+
+<body>
+  <div class="center">
+    <p style="padding-top: 10px; padding-left: 10px; color: #2358e1">서재</p>
+    <div class="book">
+      <img
+        src="https://search1.kakaocdn.net/thumb/R120x174.q85/?fname=http%3A%2F%2Ft1.daumcdn.net%2Flbook%2Fimage%2F923727%3Ftimestamp%3D20220103152724"
+      />
+      <img
+        src="https://search1.kakaocdn.net/thumb/R120x174.q85/?fname=http%3A%2F%2Ft1.daumcdn.net%2Flbook%2Fimage%2F923727%3Ftimestamp%3D20220103152724"
+      />
+      <img
+        src="https://search1.kakaocdn.net/thumb/R120x174.q85/?fname=http%3A%2F%2Ft1.daumcdn.net%2Flbook%2Fimage%2F923727%3Ftimestamp%3D20220103152724"
+      />
+    </div>
+    <div class="bar"></div>
+    <div class="book"></div>
+    <div class="bar"></div>
+    <div class="book"></div>
+  </div>
+</body>

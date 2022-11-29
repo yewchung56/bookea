@@ -104,7 +104,14 @@ var app = http.createServer(function (request, response) {
         var i = 0;
         while (i < filelist.length) {
           list =
-            list + `<li><a href="/?id=${filelist[i]}">${filelist[i]}</a></li>`;
+            list +
+            `<a style="width: 20px;
+            height: 20px;
+            
+            text-decoration-line: none;
+
+
+            margin-left:10px;"href="/?id=${filelist[i]}">${filelist[i]}</a>`;
           i = i + 1;
         }
         list = list + "</ul>"; //파일 이름 받아서 반복문으로 목록을 출력
@@ -116,14 +123,33 @@ var app = http.createServer(function (request, response) {
             var template = `
         <!doctype html>
       <html>
+      <style>
+            body {
+              background: #f3dc63;
+            }
+            h1 {
+              margin-top: 0px;
+              font-size: 50px;
+            }
+            h1 > a{
+              text-decoration-line: none;
+            }
+            .icon {
+              margin: auto;
+              
+            }
+            h1 > a:visited {
+              color: #2358e1;
+            }
+            
+      </style>
       <head>
         <title>WEB1 - ${title}</title>
         <meta charset="utf-8">
       </head>
       <body>
         <h1><a href="/">Bookea</a></h1>
-        ${list}
-        <h2>${title}</h2>
+        <div class="icon">${list}</div>
         <p>${description}</p>
       </body>
       </html>
@@ -148,7 +174,22 @@ var app = http.createServer(function (request, response) {
       console.log(post.id); //post를 통해 전송된 데이터를 가져올 수 있음
       console.log(post.password);
     });
-    response.writeHead(200);
+    response.writeHead(302, { Location: "/?id=Login" }); //로그인 페이지로 이동 or 홈으로 이동?
+    response.end("success");
+  } else if (pathname === "/login") {
+    var body = "";
+    request.on("data", function (data) {
+      //웹 브라우저가 post로 데이터를 전송하면 엄청난 큰 데이터 일 때를 대비해서 이런 사용방법 제공 어떤 특정한 양의 조각들을 수신할 때마다 서버는 callback함수를 호출하도록 함
+      body = body + data; //body에 callback이 실행될 때마다 데이터를 추가
+    });
+    request.on("end", function () {
+      //들어올 정보가 더이상 없을 때 end에 해당되는 callback이 수신되었을 때 정보가 끝났음을 알 수 있음
+      var post = qs.parse(body); //parse 함수를 통해 정보를 객체화
+      var id = post.id;
+      console.log(post.id); //post를 통해 전송된 데이터를 가져올 수 있음
+      console.log(post.password);
+    });
+    response.writeHead(302, { Location: "/?id=MainPage" }); //로그인 페이지로 이동 or 홈으로 이동?
     response.end("success");
   } else {
     response.writeHead(404);
