@@ -177,6 +177,7 @@ var app = http.createServer(function (request, response) {
       var id = post.id;
       console.log(post.id); //post를 통해 전송된 데이터를 가져올 수 있음
       console.log(post.password);
+      console.log(post.passwordchk);
     });
     response.writeHead(302, { Location: "/?id=Login" }); //로그인 페이지로 이동 or 홈으로 이동?
     response.end("success");
