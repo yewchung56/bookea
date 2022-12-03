@@ -1,27 +1,157 @@
-검색 결과가 나오는 페이지
+
 <head>
   <meta charset="utf-8" />
   <meta content="width=device-width, initial-scale=1.0" />
+  <script src="https://use.fontawesome.com/releases/v6.2.1/js/all.js"></script>
+
   <style>
+    header {
+      font-family: 'Comfortaa';
+      background: white;
+      border-color: #2358e1;
+      width:100%;
+      height:80px;
+      display: flex;
+      align-items: center;
+    }
+    back{
+      font-family: 'Comfortaa';
+      width:100%;
+      display: flex;
+      justify-content: space-evenly;
+      align-items: center;
+    }
     body {
       background: #f3dc63;
+      margin: 0;
+      align-items: center;
     }
     h1 {
       color: #2358e1;
+      font-family: 'Comfortaa';
+      font-style: normal;
+      font-weight: 400;
+      font-size: 28.4444px;
+      line-height: 32px;
+      /* identical to box height */
+      display: flex;
+      align-items: center;
+      text-align: center;
+      letter-spacing: -0.015em;
+      padding: 30px;
+    }
+    h2{
+      margin: 40px;
+      color: #2358e1;
+      font-family: 'Comfortaa';
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 32px;
+      display: flex;
+      align-items: flex-start;
+    }
+    h3{
+      margin: 40px;
+      font-family: 'Comfortaa';
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 32px;
+      
+    }
+    h4{
+      margin-left: 40px;
+      font-family: 'Comfortaa';
+      font-weight: 4;
+      font-size: 14px;
+      
+    }
+    strong{
+      float: left;
+      font-family: 'Comfortaa';
+      font-style: normal;
+      font-weight: 300;
+      font-size: 16px;
+      line-height: 22px;
+      display: flex;
+      /* align-items:flex-start;
+      text-align: center; */
+    }
+    input{
+      line-height: 18px;
+      width:700px;
+      font-family: 'Comfortaa';
+      font-size: 14px;
+      align-items: center;
+      padding: 10px;
+      border-color: #2358e1;
+      border-radius: 40px;
+      display: flex;
+    }
+    #search{
+      margin: 20px;
+      width: 100px;
+      font-family:'Comfortaa';
+      color:#f3dc63;
+      background-color: #2358e1;
+      line-height: 30px;
+      border-radius: 5px;
+      
+    }
+    #content{
+      font-family: 'Comfortaa';
+      margin: 50px;
+      background-color: #FFFBEB;
+      width: 90%;
+      display: flex;
+      flex-direction: column;
+    }
+    #logout{
+      margin: 30px;
+      width: 100px;
+      font-family:'Comfortaa';
+      color:#2358e1;
+      background-color: #F3DC63;
+      line-height: 30px;
+      border-radius: 5px;
+    }
+    #hi{
+      flex-direction: row;
+    }
+    hr{
+      margin: 20px;
+    }
+   /*  result{
+      font-family: 'Comfortaa';
+      margin: 40px;
+      display: flex;
+      justify-content: space-between;
+    } */
+    p{
+      text-align: center;
     }
   </style>
-  <title>BOOKEA1 - ${title}</title>
 </head>
-<body>
-  <h1>BOOKEA</h1>
-  <input id="query" type="text" />
-  <button id="search">검색</button>
-  <div></div>
-  <!--  <div style="height: 50px;"></div>
-        <h2>검색결과</h2>
-        <h3>책 표지</h3>
-        <p></p> -->
 
+<body>
+  <header>
+  <h1>BOOKEA</h1>
+    <input id="query" type="text" placeholder="검색어를 입력해 주세요"/>
+    <button id="search">SEARCH</button>
+    <button id ="logout">LOGOUT</button>
+</header>
+<p></p>
+<section id="content">
+  <h2>검색결과</h2>
+  <back>
+  <h3>책 표지</h3>
+  <h3>책 제목</h3>
+  <h3>저자</h3>
+  <h3>출판사</h3>
+  <h3>발행일</h3>
+  <h3>위시리스트에 담기</h3>
+  </back>
+  <hr>
+<div></div>
   <script
     src="https://code.jquery.com/jquery-3.6.1.js"
     integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
@@ -31,7 +161,6 @@
   <script>
     $(document).ready(function () {
       var pageNum = 1;
-
       $("#search").click(function () {
         $("div").html("");
 
@@ -40,31 +169,27 @@
           url: "https://dapi.kakao.com/v3/search/book?target=title",
           data: { query: $("#query").val(), page: pageNum },
           headers: {
-            Authorization: "KakaoAK 5032971dfe6ef4c1396c474be397c09c",
+            Authorization:"KakaoAK 5032971dfe6ef4c1396c474be397c09c",
           },
         }).done(function (msg) {
           console.log(msg.documents[0].title);
           console.log(msg.documents[0].thumbnail);
           for (var i = 0; i < 10; i++) {
+            const dateArr = msg.documents[i].datetime.split('T');
+            var $result = $("<back>"+"<img src = '" + msg.documents[i].thumbnail + "'/>"+"<p>"+
+                msg.documents[i].title +"<p>"+
+                msg.documents[i].authors+"<p>"+
+                  msg.documents[i].publisher+"<p>"+
+                dateArr[0]+"<p>"+
+                `<i class="fa-solid fa-cart-shopping fa-2x"></i>`+"</back>"); 
             $("div").append(
-              "<strong><a ref = '" +
-                msg.documents[i].uri +
-                "'>" +
-                msg.documents[i].title +
-                "</a></strong><br>"
+              $result
             );
-            $("div").append(
-              "<strong>저자:</strong> " + msg.documents[i].authors + "<br>"
-            );
-            $("div").append(
-              "<strong>출판사:</strong>" + msg.documents[i].publisher + "<br>"
-            );
-            $("div").append(
-              "<img src = '" + msg.documents[i].thumbnail + "'/><br>"
-            );
+      $("div").append("<hr>");
           }
         });
       });
+    
       $(window).scroll(function () {
         if (
           Math.ceil($(window).scrollTop()) + $(window).height() >=
@@ -82,26 +207,22 @@
           }).done(function (msg) {
             console.log(msg);
             for (var i = 0; i < 10; i++) {
-              $("div").append(
-                "<strong><a ref = '" +
-                  msg.documents[i].uri +
-                  "'>" +
-                  msg.documents[i].title +
-                  "</a></strong><br>"
-              );
-              $("div").append(
-                "<strong>저자:</strong> " + msg.documents[i].authors + "<br>"
-              );
-              $("div").append(
-                "<strong>출판사:</strong>" + msg.documents[i].publisher + "<br>"
-              );
-              $("div").append(
-                "<img src = '" + msg.documents[i].thumbnail + "'/><br>"
-              );
+              const dateArr = msg.documents[i].datetime.split('T');
+              var $result = $("<back>"+"<img src = '" + msg.documents[i].thumbnail + "'/>"+"<p>"+
+                msg.documents[i].title +"<p>"+
+                msg.documents[i].authors+"<p>"+
+                  msg.documents[i].publisher+"<p>"+
+                dateArr[0]+"<p>"+
+                `<i class="fa-solid fa-cart-shopping"></i>`+"</back>"); 
+            $("div").append(
+              $result
+            );
+            $("div").append("<hr>");
             }
           });
         }
       });
     });
   </script>
+  </section>
 </body>
