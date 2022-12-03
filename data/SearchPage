@@ -4,14 +4,14 @@
   <meta content="width=device-width, initial-scale=1.0" />
   <style>
     header {
-	background: white;
-  border-color: #2358e1;
-	width:100%;
-	height:80px;
-	display: flex;
-	align-items: center;
-
-}
+      background: white;
+      border-color: #2358e1;
+      width:100%;
+      height:80px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
     body {
       background: #f3dc63;
       margin: 0;
@@ -19,7 +19,6 @@
      
     }
     h1 {
-      
       color: #2358e1;
       font-family: 'Comfortaa';
       font-style: normal;
@@ -42,21 +41,42 @@
       align-items: center;
       text-align: center;
     }
+    input{
+      line-height: 18px;
+      width:700px;
+      font-family: 'Comfortaa';
+      font-size: 14px;
+      align-items: center;
+      padding: 10px;
+      border-color: #2358e1;
+      border-radius: 40px;
+      display: flex;
+    }
+  
+    button{
+      font-family:'Comfortaa';
+      color:#f3dc63;
+      background-color: #2358e1;
+      line-height: 30px;
+      border-radius: 5px;
+    
+    }
+    #content{
+      width: 60%;
+      display: flex;
+      flex-direction: row;
+    }
   </style>
   <title>BOOKEA1 - ${title}</title>
 </head>
 <body>
   <header>
   <h1>BOOKEA</h1>
-  <input id="query" type="text" />
-  <button id="search">검색</button>
+  <div id="content">
+    <input id="query" type="text" placeholder="검색어를 입력해 주세요"/>
+    <button id="search">SEARCH</button>
+  </div>
 </header>
-  <div></div>
-  <!--  <div style="height: 50px;"></div>
-        <h2>검색결과</h2>
-        <h3>책 표지</h3>
-        <p></p> -->
-
   <script
     src="https://code.jquery.com/jquery-3.6.1.js"
     integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
@@ -75,7 +95,7 @@
           url: "https://dapi.kakao.com/v3/search/book?target=title",
           data: { query: $("#query").val(), page: pageNum },
           headers: {
-            Authorization: "KakaoAK 5032971dfe6ef4c1396c474be397c09c",
+            Authorization:"KakaoAK 5032971dfe6ef4c1396c474be397c09c",
           },
         }).done(function (msg) {
           console.log(msg.documents[0].title);
