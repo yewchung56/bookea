@@ -1,0 +1,271 @@
+<style>
+  .center {
+    width: 100%;
+    height: 90%;
+    padding-top: 30;
+    background-color: #fffbeb;
+  }
+  .bar {
+    width: 95%;
+    height: 20px;
+    background-color: #fff9d8;
+    margin: auto;
+    box-shadow: 5px 5px 10px grey;
+    margin-bottom: 20px;
+  }
+  .imgList {
+    width: 1400px;
+    flex-direction: row;
+
+    justify-content: space-around;
+    align-items: center;
+  }
+  img {
+    padding-top: 20px;
+    padding-left: 40px;
+    margin: auto;
+  }
+  .imgC {
+    display: inline;
+    padding-top: 10px;
+    width: auto;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  /* 이미지 클릭 시, 밝기 조절 */
+  .imgC:hover {
+    opacity: 0.8;
+  }
+
+  .modal {
+    display: none; /* 모달창 숨겨 놓기 */
+    position: fixed;
+    z-index: 1; /* 모달창을 제일 앞에 두기 */
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto; /* 스크롤 허용 auto */
+    cursor: pointer; /* 마우스 손가락모양 */
+    background-color: rgba(0, 0, 0, 0.8);
+  }
+  /* 모달창 이미지 */
+  .modal_content {
+    margin: auto;
+    display: block;
+    width: 30%;
+    height: auto;
+    max-width: 1000px;
+    border-radius: 10px;
+    animation-name: zoom;
+    animation-duration: 0.8s;
+    background-color: white;
+  }
+  .modal_content > p {
+    padding-left: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+  /* 모달창 애니메이션 추가 */
+  @keyframes zoom {
+    from {
+      transform: scale(0);
+    }
+    to {
+      transform: scale(1);
+    }
+  }
+  /* 닫기 버튼 꾸미기 */
+  .close {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+  }
+  .close:hover,
+  .close:focus {
+    color: #bbb;
+    text-decoration: none;
+    cursor: pointer;
+  }
+</style>
+
+<body>
+  <div class="center">
+    <p style="padding-top: 10px; padding-left: 10px; color: #2358e1">서재</p>
+    <div class="imgList">
+      <div class="imgC">
+        <img
+          src="https://search1.kakaocdn.net/thumb/R120x174.q85/?fname=http%3A%2F%2Ft1.daumcdn.net%2Flbook%2Fimage%2F923727%3Ftimestamp%3D20220103152724"
+          alt="책 이미지"
+        />
+      </div>
+      <div class="imgC">
+        <img
+          src="https://search1.kakaocdn.net/thumb/R120x174.q85/?fname=http%3A%2F%2Ft1.daumcdn.net%2Flbook%2Fimage%2F4966863%3Ftimestamp%3D20221003230108"
+        />
+      </div>
+      <div class="imgC">
+        <img
+          src="https://search1.kakaocdn.net/thumb/R120x174.q85/?fname=http%3A%2F%2Ft1.daumcdn.net%2Flbook%2Fimage%2F923727%3Ftimestamp%3D20220103152724"
+        />
+      </div>
+      <div class="imgC">
+        <img
+          src="https://search1.kakaocdn.net/thumb/R120x174.q85/?fname=http%3A%2F%2Ft1.daumcdn.net%2Flbook%2Fimage%2F923727%3Ftimestamp%3D20220103152724"
+          alt="책 이미지"
+        />
+      </div>
+      <div class="imgC">
+        <img
+          src="https://search1.kakaocdn.net/thumb/R120x174.q85/?fname=http%3A%2F%2Ft1.daumcdn.net%2Flbook%2Fimage%2F923727%3Ftimestamp%3D20220103152724"
+          alt="책 이미지"
+        />
+      </div>
+      <div class="imgC">
+        <img
+          src="https://search1.kakaocdn.net/thumb/R120x174.q85/?fname=http%3A%2F%2Ft1.daumcdn.net%2Flbook%2Fimage%2F923727%3Ftimestamp%3D20220103152724"
+          alt="책 이미지"
+        />
+      </div>
+      <div class="imgC">
+        <img
+          src="https://search1.kakaocdn.net/thumb/R120x174.q85/?fname=http%3A%2F%2Ft1.daumcdn.net%2Flbook%2Fimage%2F923727%3Ftimestamp%3D20220103152724"
+          alt="책 이미지"
+        />
+      </div>
+      <div class="imgC">
+        <img
+          src="https://search1.kakaocdn.net/thumb/R120x174.q85/?fname=http%3A%2F%2Ft1.daumcdn.net%2Flbook%2Fimage%2F923727%3Ftimestamp%3D20220103152724"
+          alt="책 이미지"
+        />
+      </div>
+      <div class="imgC">
+        <img
+          src="https://search1.kakaocdn.net/thumb/R120x174.q85/?fname=http%3A%2F%2Ft1.daumcdn.net%2Flbook%2Fimage%2F923727%3Ftimestamp%3D20220103152724"
+          alt="책 이미지"
+        />
+      </div>
+      <div class="imgC">
+        <img
+          src="https://search1.kakaocdn.net/thumb/R120x174.q85/?fname=http%3A%2F%2Ft1.daumcdn.net%2Flbook%2Fimage%2F923727%3Ftimestamp%3D20220103152724"
+          alt="책 이미지"
+        />
+      </div>
+      <div class="imgC">
+        <img
+          src="https://search1.kakaocdn.net/thumb/R120x174.q85/?fname=http%3A%2F%2Ft1.daumcdn.net%2Flbook%2Fimage%2F923727%3Ftimestamp%3D20220103152724"
+          alt="책 이미지"
+        />
+      </div>
+      <div class="imgC">
+        <img
+          src="https://search1.kakaocdn.net/thumb/R120x174.q85/?fname=http%3A%2F%2Ft1.daumcdn.net%2Flbook%2Fimage%2F923727%3Ftimestamp%3D20220103152724"
+          alt="책 이미지"
+        />
+      </div>
+      <div class="imgC">
+        <img
+          src="https://search1.kakaocdn.net/thumb/R120x174.q85/?fname=http%3A%2F%2Ft1.daumcdn.net%2Flbook%2Fimage%2F923727%3Ftimestamp%3D20220103152724"
+          alt="책 이미지"
+        />
+      </div>
+    </div>
+    <!-- <div class="bar"></div>
+    <div class="imgList"></div>
+    <div class="bar"></div>
+    <div class="imgList"></div> -->
+    <div class="modal">
+      <span class="close">&times;</span>
+      <div class="modal_content">
+        <p>2022.12.10</p>
+        <p>
+          인용구: 자바를 다루는 기술 자바를 다루는 기술 자바를 다루는 기술
+          자바를 다루는 기술
+        </p>
+        <p>
+          느낀점: 자바는 재미있당 자바는 재미있당 자바는 재미있당 자바는
+          재미있당 자바는 재미있당
+        </p>
+      </div>
+    </div>
+    <div class="modal">
+      <span class="close">&times;</span>
+      <div class="modal_content">
+        <p>2022.12.12</p>
+        <p>
+          인용구: 혼자 공부하는 파이썬 혼자 공부하는 파이썬 혼자 공부하는 파이썬
+          혼자 공부하는 파이썬 혼자 공부하는 파이썬
+        </p>
+        <p>느낀점: 파이썬은...</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // const modal = document.querySelector(".modal");
+    // const img = document.querySelector(".imgC");
+    // const modal_img = document.querySelector(".modal_content");
+    // const span = document.querySelector(".close");
+
+    // function modalDisplay(text) {
+    //   modal.style.display = text;
+    // }
+    // img.addEventListener("click", () => {
+    //   modalDisplay("block");
+    //   modal_img.src = img.src;
+    // }); //이미지 클릭하면 모달창 띄움 모달의 display를 block으로 바꿔준 후에 이미지의 display를 block으로 바꾼다. 이유는 모달창 스크롤할 때 모달창 뒤에 있는 이미지가 움직이지 않게 하기 위해서
+    // span.addEventListener("click", () => {
+    //   modalDisplay("none");
+    // });
+    // modal.addEventListener("click", () => {
+    //   modalDisplay("none");
+    // });
+
+    // Modal을 가져옵니다.
+    var modals = document.getElementsByClassName("modal");
+    // Modal을 띄우는 클래스 이름을 가져옵니다.
+    var btns = document.getElementsByClassName("imgC");
+    // Modal을 닫는 close 클래스를 가져옵니다.
+    var spanes = document.getElementsByClassName("close");
+    var funcs = [];
+
+    // Modal을 띄우고 닫는 클릭 이벤트를 정의한 함수
+    function Modal(num) {
+      return function () {
+        // 해당 클래스의 내용을 클릭하면 Modal을 띄웁니다.
+        btns[num].onclick = function () {
+          modals[num].style.display = "block";
+          console.log(num);
+        };
+
+        // <span> 태그(X 버튼)를 클릭하면 Modal이 닫습니다.
+        spanes[num].onclick = function () {
+          modals[num].style.display = "none";
+        };
+      };
+    }
+
+    // 원하는 Modal 수만큼 Modal 함수를 호출해서 funcs 함수에 정의합니다.
+    for (var i = 0; i < btns.length; i++) {
+      funcs[i] = Modal(i);
+    }
+
+    // 원하는 Modal 수만큼 funcs 함수를 호출합니다.
+    for (var j = 0; j < btns.length; j++) {
+      funcs[j]();
+    }
+
+    //Modal 영역 밖을 클릭하면 Modal을 닫습니다.
+    window.onclick = function (event) {
+      if (event.target.className == "modal") {
+        event.target.style.display = "none";
+      }
+    };
+  </script>
+</body>
