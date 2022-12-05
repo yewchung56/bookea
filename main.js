@@ -153,7 +153,7 @@ var app = http.createServer(function (request, response) {
       </head>
       <body>
         <h1><a href="/">BOOKEA</a></h1>
-        <div class="icon">${list}</div>
+        
         <p>${description}</p>
       </body>
       </html>
