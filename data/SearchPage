@@ -1,5 +1,8 @@
 
 <head>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <script src="alert/dist/sweetalert-dev.js"></script>
+  <link rel="stylesheet" href="alert/dist/sweetalert.css">
   <meta charset="utf-8" />
   <meta content="width=device-width, initial-scale=1.0" />
   <script src="https://use.fontawesome.com/releases/v6.2.1/js/all.js"></script>
@@ -129,6 +132,8 @@
     p{
       text-align: center;
     }
+    wish{
+    }
   </style>
 </head>
 
@@ -157,6 +162,11 @@
     integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
     crossorigin="anonymous"
   ></script>
+  <script type="text/javascript">
+  function hello()  {
+    swal("위시리스트에 추가되었습니다.","","success");
+  }
+</script>
 
   <script>
     $(document).ready(function () {
@@ -181,7 +191,7 @@
                 msg.documents[i].authors+"<p>"+
                   msg.documents[i].publisher+"<p>"+
                 dateArr[0]+"<p>"+
-                `<i class="fa-solid fa-cart-shopping fa-2x"></i>`+"</back>"); 
+                `<i id="wish" class="fa-solid fa-cart-shopping fa-2x" onclick="hello()"></i>`+"</back>"); 
             $("div").append(
               $result
             );
@@ -213,7 +223,8 @@
                 msg.documents[i].authors+"<p>"+
                   msg.documents[i].publisher+"<p>"+
                 dateArr[0]+"<p>"+
-                `<i class="fa-solid fa-cart-shopping"></i>`+"</back>"); 
+                    `<i class="fa-solid fa-cart-shopping fa-2x" onclick="hello()"></i>`+"</back>");
+                
             $("div").append(
               $result
             );
