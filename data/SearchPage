@@ -18,6 +18,7 @@
       align-items: center;
       position: sticky;
       top:0;
+    
     }
     back{
       font-family: 'Comfortaa';
@@ -196,6 +197,7 @@
         }).done(function (msg) {
           console.log(msg.documents[0].title);
           console.log(msg.documents[0].thumbnail);
+          console.log(msg.documents[0].authors);
           for (var i = 0; i < 10; i++) {
             const dateArr = msg.documents[i].datetime.split('T');
             var $result = $("<back>"+"<img src = '" + msg.documents[i].thumbnail + "'/>"+"<p>"+
