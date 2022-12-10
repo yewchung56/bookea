@@ -132,6 +132,10 @@
     #hi{
       flex-direction: row;
     }
+    #user{
+        justify-self: unset;
+        align-self: center;
+      }
     hr{
       margin: 20px;
     }
@@ -143,8 +147,6 @@
     } */
     p{
       text-align: center;
-    }
-    wish{
     }
   </style>
 </head>
