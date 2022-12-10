@@ -154,7 +154,6 @@ var app = http.createServer(function (request, response) {
         <meta charset="utf-8">
       </head>
       <body>
-       
         <p>${description}</p>
       </body>
       </html>

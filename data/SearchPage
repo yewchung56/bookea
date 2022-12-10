@@ -146,10 +146,10 @@
 
 <body>
   <header>
-    <h1>BOOKEA</h1>
+    <a href="/?id=MainPage"><h1>BOOKEA</h1></a>
     <input id="query" type="text" placeholder="검색어를 입력해 주세요" />
     <button id="search">SEARCH</button>
-    <i class="fa-solid fa-book fa-2x"></i>
+    <a href="/?id=MyLibrary"><i class="fa-solid fa-book fa-2x"></i></a>
     <button id="logout">LOGOUT</button>
   </header>
   <p></p>
