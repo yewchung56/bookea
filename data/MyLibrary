@@ -93,9 +93,50 @@
     text-decoration: none;
     cursor: pointer;
   }
+  #header {
+    padding: 0px 20px 0px 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+  #title {
+    color: #2358e1;
+  }
+  #logout {
+    background-color: #f3dc63;
+    width: 130px;
+    height: 40px;
+    border-radius: 5px;
+    color: #2358e1;
+    font-size: 15px;
+    border-color: #2358e1;
+  }
+  #search {
+    justify-self: unset;
+    width: 70%;
+  }
+  #searchBtn {
+    background-color: #2358e1;
+    width: 130px;
+    height: 40px;
+    border-radius: 5px;
+    color: #f3dc63;
+    font-size: 15px;
+    border-color: #f3dc63;
+  }
 </style>
 
 <body>
+  <div id="header">
+    <h1><a href="/?id=MainPage">BOOKEA</a></h1>
+    <div id="search">
+      <a href="/?id=SearchPage"><button id="searchBtn">Search</button></a>
+    </div>
+    <div id="user">
+      <button id="logout">Log out</button>
+    </div>
+  </div>
   <div class="center">
     <p style="padding-top: 10px; padding-left: 10px; color: #2358e1">서재</p>
     <div class="imgList">
@@ -226,7 +267,7 @@
     // modal.addEventListener("click", () => {
     //   modalDisplay("none");
     // });
-
+    db.query(`SELECT * FROM userbook`, function (error, userbooks) {});
     // Modal을 가져옵니다.
     var modals = document.getElementsByClassName("modal");
     // Modal을 띄우는 클래스 이름을 가져옵니다.

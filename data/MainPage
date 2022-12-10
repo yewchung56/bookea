@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="bower_components/es6-promise/promise.min.js"></script> 
+    <script src="bower_components/sweetalert2/dist/sweetalert2.min.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
   <script src="alert/dist/sweetalert-dev.js"></script>
   <link rel="stylesheet" href="alert/dist/sweetalert.css">
@@ -431,6 +433,12 @@
           font-size: 14px;
           border: 1px solid white;
         }
+        .swal-title {
+          margin: 0px;
+          font-size: 16px;
+          box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.21);
+          margin-bottom: 28px;
+        }
         h1{
           font-family: "EF_Diary";
           font-size: 40px;
@@ -444,11 +452,10 @@
     <div id="header">
       <h1 id="title">BOOKEA</h1>
       <div id="search">
-        <input id="searchBox" type="text" placeholder="Search">
-        <button id="searchBtn">Search</button>
+        <a href="/?id=SearchPage"><button id="searchBtn">Search</button></a>
       </div>
       <div id="user">
-        <i class="fa-solid fa-book fa-2x"></i>
+        <a href="/?id=MyLibrary"><i class="fa-solid fa-book fa-2x"></i></a>
         <button id="logout">Log out</button>
       </div>
     </div>
@@ -549,15 +556,36 @@
       }
       function answering()  {
         swal({
-          closeOnClickOutside: false,
-          content: {
-            element: "input",
-            attributes: {
-              placeholder: "리뷰작성",
-              type: "review",
-            },
-          },
-        });
+          title: '독후감 작성',
+          html:
+          '<input type="text" id="swal-input1" class="swal2-input" autofocus>' +
+          '<input id="swal-input2" class="swal2-input">',
+          preConfirm: function() {
+            return new Promise(function(resolve) {
+              if (result) {
+                resolve([
+                  $('#swal-input1').val(),
+                  $('#swal-input2').val()
+                 ]);
+                }
+              });
+            }
+          }).then(function(result) {
+            swal(JSON.stringify(result));
+          })
+        // swal({
+        //   closeOnClickOutside: false,
+        //   title: "독후감 작성",
+        //   //html: true,
+        //   html: '<input id="userName" type="text">'+'<br>'+'<input id="password"+	type="password">',
+        //   content: {
+        //     element: "input",
+        //   //   attributes: {
+        //   //     placeholder: "리뷰작성",
+        //   //     type: "review",
+        //   //   },
+        //   },
+        // });
       }
     </script>
     </script>
