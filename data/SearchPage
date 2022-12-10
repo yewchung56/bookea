@@ -9,7 +9,6 @@
 
   <style>
     header {
-      font-family: 'Comfortaa';
       background: white;
       border-color: #2358e1;
       width:100%;
@@ -21,7 +20,7 @@
     
     }
     back{
-      font-family: 'Comfortaa';
+      
       width:100%;
       display: flex;
       justify-content: space-evenly;
@@ -34,7 +33,7 @@
     }
     h1 {
       color: #2358e1;
-      font-family: 'Comfortaa';
+      font-family: EF-다이어리;
       font-style: normal;
       font-weight: 400;
       font-size: 28.4444px;
@@ -155,7 +154,11 @@
   <h1>BOOKEA</h1>
     <input id="query" type="text" placeholder="검색어를 입력해 주세요"/>
     <button id="search">SEARCH</button>
-    <button id ="logout">LOGOUT</button>
+    <div id="user">
+      <i class= "fa-solid fa-book fa-2x"></i>
+      <button id ="logout">LOGOUT</button>
+    </div>
+    
 </header>
 <p></p>
 <section id="content">
