@@ -132,7 +132,7 @@
     #hi{
       flex-direction: row;
     }
-    #user{
+    #use{
         justify-self: unset;
         align-self: center;
       }
@@ -156,7 +156,7 @@
   <h1>BOOKEA</h1>
     <input id="query" type="text" placeholder="검색어를 입력해 주세요"/>
     <button id="search">SEARCH</button>
-    <div id="user">
+    <div id="use">
       <i class= "fa-solid fa-book fa-2x"></i>
       <button id ="logout">LOGOUT</button>
     </div>
