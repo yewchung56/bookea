@@ -1,18 +1,18 @@
-var mysql      = require('mysql');
+var mysql = require("mysql");
 var connection = mysql.createConnection({
-  host     : 'localhost',
-  user     : 'newuser',
-  password : 'bookea',
-  database : 'bookea'
+  host: "localhost",
+  user: "root",
+  password: "111111",
+  database: "bookea",
 });
- 
+
 connection.connect();
- 
-connection.query('SELECT * FROM review', function (error, results, fields) {
+
+connection.query("SELECT * FROM user", function (error, results, fields) {
   if (error) {
-    console.log(error)
-  };
+    console.log(error);
+  }
   console.log(results);
 });
- 
+
 connection.end();

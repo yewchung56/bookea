@@ -16,9 +16,26 @@
   input[type="submit"] {
     background-color: #2358e1;
   }
+  h1 {
+    padding-left: 40px;
+    padding-top: 30px;
+    text-align: center;
+    justify-content: center;
+    text-decoration-line: none;
+    color: #2358e1;
+    padding-bottom: 80px;
+  }
+  h1 > a {
+    justify-content: center;
+    text-decoration-line: none;
+    color: #2358e1;
+    font-size: 80px;
+    font-family: "Comfortaa", cursive;
+  }
 </style>
 
 <div></div>
+<h1><a href="/">BOOKEA</a></h1>
 <form action="http://localhost:4000/login" method="post">
   <p><input type="text" name="id" placeholder="ID" /></p>
   <p><input type="password" name="password" placeholder="PASSWORD" /></p>
