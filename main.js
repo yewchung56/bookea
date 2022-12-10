@@ -3,7 +3,6 @@ var http = require("http");
 var fs = require("fs");
 var url = require("url");
 var qs = require("querystring");
-var db = require("./lib/db");
 
 var app = http.createServer(function (request, response) {
   var _url = request.url;
@@ -224,7 +223,7 @@ var app = http.createServer(function (request, response) {
         .then((data) => {
           //console.log(data.idUser);
           if (data.message === "login") {
-            //console.log(data.idUser);
+            console.log(data.idUser);
             global.idUser = data.idUser;
             response.writeHead(302, { Location: "/?id=MainPage" }); //로그인 페이지로 이동 or 홈으로 이동?
             response.end("success");
