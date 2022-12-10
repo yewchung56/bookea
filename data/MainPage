@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <script src="alert/dist/sweetalert-dev.js"></script>
+  <link rel="stylesheet" href="alert/dist/sweetalert.css">
     <script
       src="https://code.jquery.com/jquery-3.6.1.js"
       integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
@@ -114,10 +117,11 @@
       } 
 
       .sec_cal .cal_nav {
+        font-family: "EF_Diary";
         display: flex;
         justify-content: space-between;
         align-items: center;
-        font-weight: 700;
+        font-weight: 400;
         font-size: 48px;
         line-height: 78px;
       }
@@ -288,6 +292,7 @@
       #img1{
         padding-bottom: 30px;
         width: 50%;
+        
       }
       #read{
         width: 95%;
@@ -412,9 +417,30 @@
             text-shadow: 1px 1px 2px gray;
             color: white;
         }
+        .swal-overlay {
+          background-color: rgba(255, 251, 235, 0.4);
+        }
+        .swal-modal {
+          background-color: #FFEE95;
+          border-radius: 30px;
+         border: 2px solid white;
+        }
+        .swal-button {
+          border-radius: 20px;
+          background-color: #6590FF;
+          font-size: 14px;
+          border: 1px solid white;
+        }
+        h1{
+          font-family: "EF_Diary";
+          font-size: 40px;
+        }
+    
+
     </style>
 </head>
   <body>
+
     <div id="header">
       <h1 id="title">BOOKEA</h1>
       <div id="search">
@@ -429,8 +455,12 @@
     <div id="main">
       <div id="wish">
         <h1 id="wishlist">위시리스트</h1>
-        <img id ="img1" src="https://search1.kakaocdn.net/thumb/R120x174.q85/?fname=http%3A%2F%2Ft1.daumcdn.net%2Flbook%2Fimage%2F923727%3Ftimestamp%3D20220103152724"/>
-        <img id ="img1" src="https://search1.kakaocdn.net/thumb/R120x174.q85/?fname=http%3A%2F%2Ft1.daumcdn.net%2Flbook%2Fimage%2F923727%3Ftimestamp%3D20220103152724"/>
+        <img id ="img1" 
+        src="https://search1.kakaocdn.net/thumb/R120x174.q85/?fname=http%3A%2F%2Ft1.daumcdn.net%2Flbook%2Fimage%2F923727%3Ftimestamp%3D20220103152724"
+        onclick="asking()"/>
+        <img id ="img1" 
+        src="https://search1.kakaocdn.net/thumb/R120x174.q85/?fname=http%3A%2F%2Ft1.daumcdn.net%2Flbook%2Fimage%2F923727%3Ftimestamp%3D20220103152724"
+        onclick="asking()"/>
       </div>
       <div class="sec_cal">
         <div class="cal_nav">
@@ -499,7 +529,7 @@
       </div>
     </div>
     <div class="review-overlay">
-      <div class="review-window">
+      <div class="review-window" onclick="answering()">
         <div class="close-area">X</div>
           <div class="review-content">
               <p>어떤 책을 읽으셨나요?</p>
@@ -508,6 +538,31 @@
             </div>
       </div>
     </div>
+
+    <script type="text/javascript">
+      function asking()  {
+        swal("이 책을 읽으시겠습니까?", {
+          closeOnClickOutside: false,
+          dangerMode: true,
+          buttons: true,
+        });
+      }
+      function answering()  {
+        swal({
+          closeOnClickOutside: false,
+          content: {
+            element: "input",
+            attributes: {
+              placeholder: "리뷰작성",
+              type: "review",
+            },
+          },
+        });
+      }
+    </script>
+    </script>
+
+
   <script>
     var modals = document.getElementsByClassName("modal-overlay");
     // Modal을 띄우는 클래스 이름을 가져옵니다.
