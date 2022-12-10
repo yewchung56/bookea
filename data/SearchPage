@@ -156,10 +156,8 @@
   <h1>BOOKEA</h1>
     <input id="query" type="text" placeholder="검색어를 입력해 주세요"/>
     <button id="search">SEARCH</button>
-    <div id="use">
       <i class= "fa-solid fa-book fa-2x"></i>
       <button id ="logout">LOGOUT</button>
-    </div>
     
 </header>
 <p></p>
@@ -174,7 +172,7 @@
   <h3>위시리스트에 담기</h3>
   </back>
   <hr>
-<div></div>
+<div id="book"></div>
   <script
     src="https://code.jquery.com/jquery-3.6.1.js"
     integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
