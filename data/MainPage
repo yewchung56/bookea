@@ -112,7 +112,7 @@
     <style>
       /* section calendar */
       .sec_cal {
-        width: 1300px;
+        width: 100%;
         font-family: "NotoSansR";
         background-color: #FFFBEB;
         padding: 50px;
@@ -124,7 +124,7 @@
         justify-content: space-between;
         align-items: center;
         font-weight: 400;
-        font-size: 48px;
+        font-size: 40px;
         line-height: 78px;
       }
 
@@ -133,6 +133,7 @@
         text-align: center;
         line-height: 1;
         color: #2358E1;
+        
       }
 
       .sec_cal .cal_nav .nav {
@@ -144,8 +145,8 @@
       .sec_cal .cal_nav .go-prev,
       .sec_cal .cal_nav .go-next {
         display: block;
-        width: 50px;
-        height: 78px;
+        width: 30px;
+        height: 58px;
         font-size: 0;
         display: flex;
         justify-content: center;
@@ -177,7 +178,7 @@
       }
 
       .sec_cal .cal_wrap {
-        padding-top: 40px;
+        padding-top: 30px;
         position: relative;
         margin: 0 auto;
       }
@@ -199,34 +200,35 @@
         justify-content: center;
         width: calc(100% / 7);
         text-align: left;
-        color: #999;
+        color: rgb(124, 123, 123);
         font-size: 20px;
         text-align: center;
         border-radius:5px;
       }
 
-      .current.today {background: rgb(242 242 242);}
+      .current.today {background: rgb(255, 242, 205);}
 
       .sec_cal .cal_wrap .dates {
         display: flex;
         flex-flow: wrap;
         height: 350px;
+        
       }
 
       .sec_cal .cal_wrap .day:nth-child(7n -1) {
-        color: #3c6ffa;
+        color: #1646cc;
       }
 
       .sec_cal .cal_wrap .day:nth-child(7n) {
-        color: #ed2a61;
+        color: #bc214d;
       }
 
       .sec_cal .cal_wrap .day.disable {
         color: #ddd;
       }
       #wish{
-        width: 350px;
-        height: 1000px;
+        width: 200px;
+        margin: 0px 10px 0px 0px;
         background-color: #FFFBEB;
         align-items: center;
         flex-direction: column;
@@ -234,7 +236,8 @@
         padding-top: 50px;
       }
       #main{
-        padding: 50px;
+        width: 100%;
+        padding: 5px;
         display: flex;
         background-color: #F3DC63;
         flex-direction: row;
@@ -242,6 +245,7 @@
       }
       #wishlist{
         color: #2358E1;
+        font-size: 30px;
       }
       h3{
         margin-top: 50px;
@@ -256,6 +260,8 @@
       }
       #title{
         color: #2358E1;
+        font-size: 30px;
+        font-family: "EF_Diary";
       }
       #searchBox{
         width: 80%;
@@ -293,8 +299,8 @@
       }
       #img1{
         padding-bottom: 30px;
-        width: 50%;
-        
+        size: 15px;
+        filter: drop-shadow(5px 5px 5px rgb(81, 81, 81)); 
       }
       #read{
         width: 95%;
@@ -312,6 +318,7 @@
         width: 15%;
         align-items: center;
         padding: 20px;
+        filter: drop-shadow(3px 3px 3px rgb(99, 99, 99)); 
       }
       .read-end{
         background-color: #5F8AFA;
