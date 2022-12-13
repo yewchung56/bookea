@@ -134,7 +134,7 @@
 
 <body>
   <script>
-    fetch("http://localhost:3100/userbooks/fin/3", {
+    fetch("http://112.170.146.135:3100/userbooks/fin/3", {
       //2번으로 바꾸기
       method: "GET",
       headers: {
@@ -151,7 +151,7 @@
           finBooks.setAttribute("class", "imgC");
           finBooks.setAttribute("src", `${res.thumnail}`);
           //finBooks.setAttribute("isbn", `${res.isbn}`);
-          finBooks.setAttribute("onclick", `modal(${res.isbn})`);
+          finBooks.setAttribute("onclick", `modal(${res.isbn}, \'${res.title}\')`);
 
           libBox.appendChild(finBooks);
           console.log(finBooks);
@@ -185,34 +185,59 @@
 
    
     <script>
-        function modal(isbn) {
-            swal("리뷰~~~",{
-                closeOnClickOutside: false,
-                dangerMode: true,
-                button: "닫기",
-            }).then(result=>{
-              console.log(result)
-                if (result=== true){
-                    fetch("http://localhost:3100/reviews", {
+        function modal(isbn, title) {
+            console.log(title)
+
+            fetch("http://112.170.146.135:3100/reviews/find", {
                         //2번으로 바꾸기
-                        method: "GET",
+                        method: "POST",
                         headers: {
                             "Content-Type": "application/json",
                         },
                         body: JSON.stringify({
                             isbn: isbn,
                             idUser: 3,
-                            
                         }),
                         })
                         .then((res) => res.json())
                         .then((obj) => {
-                            console.log(obj.res[0]);
+                            obj.res.forEach((res)=> {
+                                console.log(res.content);
+
+                                const date = res.createdDate.split("T")[0]
+                                const content = res.content
+                                const quote = res.quote
+                                function repeat(date, content, quote) {
+                                    `
+                                        날짜: ${date}
+                                        리뷰: ${content}
+                                        인용구: ${quote}
+                                    `
+                                }
+                                
+                                    swal({
+                                        title: title,
+                                        text: 
+                                        `
+                                        날짜: ${date}
+                                        리뷰: ${res.content}
+                                        인용구: ${obj.res[0].quote}
+                                        `,
+                                        closeOnClickOutside: false,
+                                        dangerMode: true,
+                                        button: "닫기",
+                                    }).then(result=>{
+                                    
+                                    });
+                                
+                            })
+                            
+                            
                         })
                         .catch((error) => console.log("error:", error));
-                }else{
-                }
-            });
+
+
+            
         }
 
     </script>
@@ -289,5 +314,5 @@
         event.target.style.display = "none";
       }
     };
-  </script> —>
+  </script> -->
 </body>
