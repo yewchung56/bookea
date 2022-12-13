@@ -3,6 +3,8 @@ var http = require("http");
 var fs = require("fs");
 var url = require("url");
 var qs = require("querystring");
+const glob = 100;
+module.exports = glob;
 
 var app = http.createServer(function (request, response) {
   var _url = request.url;
