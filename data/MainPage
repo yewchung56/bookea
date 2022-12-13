@@ -6,6 +6,11 @@
     <script src="bower_components/es6-promise/promise.min.js"></script>
     <script src="bower_components/sweetalert2/dist/sweetalert2.min.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script src="sweetalert2.all.min.js"></script>
+    <script src="sweetalert2.min.js"></script>
+    <link rel="stylesheet" href="sweetalert2.min.css" />
     <script src="alert/dist/sweetalert-dev.js"></script>
     <link rel="stylesheet" href="alert/dist/sweetalert.css" />
     <script
@@ -119,23 +124,10 @@
         });
       }
     </script>
-
-    <script>
-      fetch("http://112.170.146.135:3100/userbooks/wish/2", {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      })
-        .then((res) => res.json())
-        .then((obj) => console.log(obj.res))
-        .catch((error) => console.log("error:", error));
-    </script>
-
     <style>
       /* section calendar */
       .sec_cal {
-        width: 1300px;
+        width: 100%;
         font-family: "NotoSansR";
         background-color: #fffbeb;
         padding: 50px;
@@ -147,7 +139,7 @@
         justify-content: space-between;
         align-items: center;
         font-weight: 400;
-        font-size: 48px;
+        font-size: 40px;
         line-height: 78px;
       }
 
@@ -167,8 +159,8 @@
       .sec_cal .cal_nav .go-prev,
       .sec_cal .cal_nav .go-next {
         display: block;
-        width: 50px;
-        height: 78px;
+        width: 30px;
+        height: 58px;
         font-size: 0;
         display: flex;
         justify-content: center;
@@ -200,7 +192,7 @@
       }
 
       .sec_cal .cal_wrap {
-        padding-top: 40px;
+        padding-top: 30px;
         position: relative;
         margin: 0 auto;
       }
@@ -222,14 +214,14 @@
         justify-content: center;
         width: calc(100% / 7);
         text-align: left;
-        color: #999;
+        color: rgb(124, 123, 123);
         font-size: 20px;
         text-align: center;
         border-radius: 5px;
       }
 
       .current.today {
-        background: rgb(242 242 242);
+        background: rgb(255, 242, 205);
       }
 
       .sec_cal .cal_wrap .dates {
@@ -239,19 +231,19 @@
       }
 
       .sec_cal .cal_wrap .day:nth-child(7n -1) {
-        color: #3c6ffa;
+        color: #1646cc;
       }
 
       .sec_cal .cal_wrap .day:nth-child(7n) {
-        color: #ed2a61;
+        color: #bc214d;
       }
 
       .sec_cal .cal_wrap .day.disable {
         color: #ddd;
       }
       #wish {
-        width: 350px;
-        height: 1000px;
+        width: 200px;
+        margin: 0px 10px 0px 0px;
         background-color: #fffbeb;
         align-items: center;
         flex-direction: column;
@@ -259,7 +251,8 @@
         padding-top: 50px;
       }
       #main {
-        padding: 50px;
+        width: 100%;
+        padding: 5px;
         display: flex;
         background-color: #f3dc63;
         flex-direction: row;
@@ -267,6 +260,7 @@
       }
       #wishlist {
         color: #2358e1;
+        font-size: 30px;
       }
       h3 {
         margin-top: 50px;
@@ -281,6 +275,8 @@
       }
       #title {
         color: #2358e1;
+        font-size: 30px;
+        font-family: "EF_Diary";
       }
       #searchBox {
         width: 80%;
@@ -316,11 +312,12 @@
         justify-self: unset;
         align-self: center;
       }
-      #img1 {
+      .img1 {
         padding-bottom: 30px;
-        width: 50%;
+        size: 15px;
+        filter: drop-shadow(5px 5px 5px rgb(81, 81, 81));
       }
-      #read {
+      .read {
         width: 95%;
         padding-bottom: 10px;
       }
@@ -328,14 +325,15 @@
         width: 1300px;
         display: flex;
         flex-direction: row;
-        justify-content: space-around;
+        justify-content: flex-start;
       }
-      #book {
+      .book {
         display: flex;
         flex-direction: column;
         width: 15%;
         align-items: center;
         padding: 20px;
+        filter: drop-shadow(3px 3px 3px rgb(99, 99, 99));
       }
       .read-end {
         background-color: #5f8afa;
@@ -437,7 +435,7 @@
         text-shadow: 1px 1px 2px gray;
         color: white;
       }
-      .review-content {
+      #review-content {
         margin-top: 20px;
         padding: 0px 10px;
         text-shadow: 1px 1px 2px gray;
@@ -467,6 +465,9 @@
         font-family: "EF_Diary";
         font-size: 40px;
       }
+      .review-book {
+        margin: 0px 10px 0px 0px;
+      }
     </style>
   </head>
   <body>
@@ -483,16 +484,6 @@
     <div id="main">
       <div id="wish">
         <h1 id="wishlist">위시리스트</h1>
-        <img
-          id="img1"
-          src="https://search1.kakaocdn.net/thumb/R120x174.q85/?fname=http%3A%2F%2Ft1.daumcdn.net%2Flbook%2Fimage%2F923727%3Ftimestamp%3D20220103152724"
-          onclick="asking()"
-        />
-        <img
-          id="img1"
-          src="https://search1.kakaocdn.net/thumb/R120x174.q85/?fname=http%3A%2F%2Ft1.daumcdn.net%2Flbook%2Fimage%2F923727%3Ftimestamp%3D20220103152724"
-          onclick="asking()"
-        />
       </div>
       <div class="sec_cal">
         <div class="cal_nav">
@@ -513,169 +504,230 @@
           <div class="dates"></div>
         </div>
         <h3>읽는 중</h3>
-        <div id="reading">
-          <div id="book">
-            <img
-              id="read"
-              src="https://search1.kakaocdn.net/thumb/R120x174.q85/?fname=http%3A%2F%2Ft1.daumcdn.net%2Flbook%2Fimage%2F923727%3Ftimestamp%3D20220103152724"
-            />
-            <button class="read-end">다 읽었어요</button>
-          </div>
-          <div id="book">
-            <img
-              id="read"
-              src="https://search1.kakaocdn.net/thumb/R120x174.q85/?fname=http%3A%2F%2Ft1.daumcdn.net%2Flbook%2Fimage%2F923727%3Ftimestamp%3D20220103152724"
-            />
-            <button class="read-end">다 읽었어요</button>
-          </div>
-          <div id="book">
-            <img
-              id="read"
-              src="https://search1.kakaocdn.net/thumb/R120x174.q85/?fname=http%3A%2F%2Ft1.daumcdn.net%2Flbook%2Fimage%2F923727%3Ftimestamp%3D20220103152724"
-            />
-            <button class="read-end">다 읽었어요</button>
-          </div>
-          <div id="book">
-            <img
-              id="read"
-              src="https://search1.kakaocdn.net/thumb/R120x174.q85/?fname=http%3A%2F%2Ft1.daumcdn.net%2Flbook%2Fimage%2F923727%3Ftimestamp%3D20220103152724"
-            />
-            <button class="read-end">다 읽었어요</button>
-          </div>
-          <div id="book">
-            <img
-              id="read"
-              src="https://search1.kakaocdn.net/thumb/R120x174.q85/?fname=http%3A%2F%2Ft1.daumcdn.net%2Flbook%2Fimage%2F923727%3Ftimestamp%3D20220103152724"
-            />
-            <button class="read-end">다 읽었어요</button>
-          </div>
-          <div id="book">
-            <img
-              id="read"
-              src="https://search1.kakaocdn.net/thumb/R120x174.q85/?fname=http%3A%2F%2Ft1.daumcdn.net%2Flbook%2Fimage%2F923727%3Ftimestamp%3D20220103152724"
-            />
-            <button class="read-end">다 읽었어요</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="modal-overlay">
-      <div class="modal-window">
-        <div class="content">
-          <p>다 읽었나요?</p>
-          <button>네</button>
-          <button class="no">아니요</button>
-        </div>
-      </div>
-    </div>
-    <div class="modal-overlay">
-      <div class="modal-window">
-        <div class="content">
-          <p>다 읽었나요?</p>
-          <button>네</button>
-          <button class="no">아니요</button>
-        </div>
+        <div id="reading"></div>
       </div>
     </div>
     <div class="review-overlay">
-      <div class="review-window" onclick="answering()">
+      <div class="review-window">
         <div class="close-area">X</div>
-        <div class="review-content">
+        <div id="review-content">
           <p>어떤 책을 읽으셨나요?</p>
-          <img
-            id="review-book"
-            src="https://search1.kakaocdn.net/thumb/R120x174.q85/?fname=http%3A%2F%2Ft1.daumcdn.net%2Flbook%2Fimage%2F923727%3Ftimestamp%3D20220103152724"
-          />
-          <img
-            id="review-book"
-            src="https://search1.kakaocdn.net/thumb/R120x174.q85/?fname=http%3A%2F%2Ft1.daumcdn.net%2Flbook%2Fimage%2F923727%3Ftimestamp%3D20220103152724"
-          />
         </div>
       </div>
     </div>
 
-    <script type="text/javascript">
-      function asking() {
-        swal("이 책을 읽으시겠습니까?", {
-          closeOnClickOutside: false,
-          dangerMode: true,
-          buttons: true,
-        });
-      }
-      function answering() {
-        swal({
-          title: "독후감 작성",
-          html:
-            '<input type="text" id="swal-input1" class="swal2-input" autofocus>' +
-            '<input id="swal-input2" class="swal2-input">',
-          preConfirm: function () {
-            return new Promise(function (resolve) {
-              if (result) {
-                resolve([$("#swal-input1").val(), $("#swal-input2").val()]);
-              }
-            });
-          },
-        }).then(function (result) {
-          swal(JSON.stringify(result));
-        });
-        // swal({
-        //   closeOnClickOutside: false,
-        //   title: "독후감 작성",
-        //   //html: true,
-        //   html: '<input id="userName" type="text">'+'<br>'+'<input id="password"+	type="password">',
-        //   content: {
-        //     element: "input",
-        //   //   attributes: {
-        //   //     placeholder: "리뷰작성",
-        //   //     type: "review",
-        //   //   },
-        //   },
-        // });
-      }
+    <script>
+      fetch("http://localhost:3100/userbooks/wish/2", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+        .then((res) => res.json())
+        .then((obj) => {
+          console.log(obj.res[0].thumnail);
+          obj.res.forEach((res) => {
+            let wishBox = document.getElementById("wish");
+
+            let wishBooks = document.createElement("img");
+            wishBooks.setAttribute("class", "img1");
+            wishBooks.setAttribute("src", `${res.thumnail}`);
+            wishBooks.setAttribute("onclick", `asking(${res.isbn})`);
+
+            wishBox.appendChild(wishBooks);
+          });
+        })
+        .catch((error) => console.log("error:", error));
+
+      fetch("http://localhost:3100/userbooks/reading/2", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+        .then((res) => res?.json())
+        .then((obj) => {
+          console.log(obj?.res[0].thumnail);
+          obj.res.forEach((res) => {
+            let readBox = document.getElementById("reading");
+
+            let bookBox = document.createElement("div");
+            bookBox.setAttribute("class", "book");
+            let readingBooks = document.createElement("img");
+            readingBooks.setAttribute("class", "read");
+            readingBooks.setAttribute("src", `${res.thumnail}`);
+
+            let endBtn = document.createElement("button");
+            endBtn.setAttribute("class", "read-end");
+            endBtn.setAttribute("onclick", `endAsk(${res.isbn})`);
+            endBtn.innerText = "다 읽었어요";
+
+            bookBox.appendChild(readingBooks);
+            bookBox.appendChild(endBtn);
+
+            readBox.appendChild(bookBox);
+
+            let reviewBox = document.getElementById("review-content");
+            let book = document.createElement("img");
+            book.setAttribute("class", "review-book");
+            book.setAttribute("src", `${res.thumnail}`);
+            book.setAttribute("onclick", `answering(${res.isbn})`);
+
+            reviewBox.appendChild(book);
+          });
+        })
+        .catch((error) => console.log("error:", error));
     </script>
 
-    <script>
-      var modals = document.getElementsByClassName("modal-overlay");
-      // Modal을 띄우는 클래스 이름을 가져옵니다.
-      var btns = document.getElementsByClassName("read-end");
-      // Modal을 닫는 close 클래스를 가져옵니다.
-      var spanes = document.getElementsByClassName("no");
-      var funcs = [];
+    <script type="text/javascript">
+      function createDate() {
+        var today = new Date();
 
-      // Modal을 띄우고 닫는 클릭 이벤트를 정의한 함수
-      function Modal(num) {
-        return function () {
-          // 해당 클래스의 내용을 클릭하면 Modal을 띄웁니다.
-          btns[num].onclick = function () {
-            modals[num].style.display = "flex";
-            console.log(num);
-          };
+        var year = today.getFullYear();
+        var month = ("0" + (today.getMonth() + 1)).slice(-2);
+        var day = ("0" + today.getDate()).slice(-2);
 
-          // <span> 태그(X 버튼)를 클릭하면 Modal이 닫습니다.
-          spanes[num].onclick = function () {
-            modals[num].style.display = "none";
-          };
-        };
+        var hours = ("0" + today.getHours()).slice(-2);
+        var minutes = ("0" + today.getMinutes()).slice(-2);
+        var seconds = ("0" + today.getSeconds()).slice(-2);
+
+        var date =
+          year +
+          "-" +
+          month +
+          "-" +
+          day +
+          " " +
+          hours +
+          ":" +
+          minutes +
+          ":" +
+          seconds;
+
+        return date;
       }
 
-      // 원하는 Modal 수만큼 Modal 함수를 호출해서 funcs 함수에 정의합니다.
-      for (var i = 0; i < btns.length; i++) {
-        funcs[i] = Modal(i);
+      function asking(isbn) {
+        Swal.fire({
+          title: "이 책을 읽으시겠습니까?",
+          showDenyButton: true,
+          showCancelButton: true,
+          confirmButtonText: "네",
+          denyButtonText: `위시리스트에서 삭제`,
+          cancelButtonText: "아니오",
+        }).then((result) => {
+          if (result.isConfirmed) {
+            var time = createDate();
+            fetch("http://localhost:3100/userbooks", {
+              method: "PUT",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                isbn: isbn,
+                idUser: 2,
+                readStatus: 0,
+                startTime: time,
+              }),
+            })
+              .then((res) => res.json())
+              .then((obj) => {
+                console.log(obj);
+              })
+              .catch((error) => console.log("error:", error));
+          } else if (result.isDenied) {
+            fetch("http://localhost:3100/userbooks", {
+              method: "DELETE",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                isbn: isbn,
+                idUser: 2,
+              }),
+            })
+              .then((res) => res.json())
+              .then((obj) => {
+                console.log(obj);
+              })
+              .catch((error) => console.log("error:", error));
+          } else {
+          }
+        });
       }
+      const answering = async (isbn) => {
+        const { value: formValues } = await Swal.fire({
+          title: "감상문",
+          html:
+            '<input id="swal-input1" class="swal2-input" type="number" min="1" placeholder="시작 페이지">' +
+            '<input id="swal-input2" class="swal2-input" type="number" min="1" placeholder="끝 페이지">' +
+            "<p>리뷰</p>" +
+            '<textarea id="text-review" cols="56" rows="5"></textarea>' +
+            "<p>인용문</p>" +
+            '<textarea id="text-quote" cols="56" rows="2"></textarea>',
+          focusConfirm: false,
+          preConfirm: () => {
+            return {
+              isbn: isbn,
+              idUser: 2,
+              quote: document.getElementById("text-quote").value,
+              content: document.getElementById("text-review").value,
+              startPage: Number(document.getElementById("swal-input1").value),
+              endPage: Number(document.getElementById("swal-input2").value),
+              createdDate: createDate(),
+            };
+          },
+        });
 
-      // 원하는 Modal 수만큼 funcs 함수를 호출합니다.
-      for (var j = 0; j < btns.length; j++) {
-        funcs[j]();
-      }
-
-      // Modal 영역 밖을 클릭하면 Modal을 닫습니다.
-      window.onclick = function (event) {
-        if (event.target.className == "modal-overlay") {
-          event.target.style.display = "none";
+        if (formValues) {
+          fetch("http://localhost:3100/reviews", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(formValues),
+          })
+            .then((res) => res.json())
+            .then((obj) => {
+              console.log(obj);
+            })
+            .catch((error) => console.log("error:", error));
         }
       };
+
+      function endAsk(isbn) {
+        Swal.fire({
+          title: "다 읽었나요?",
+          showCancelButton: true,
+          confirmButtonText: "네",
+          cancelButtonText: "아니오",
+        }).then((result) => {
+          console.log(result);
+          if (result.isConfirmed) {
+            var time = createDate();
+            fetch("http://localhost:3100/userbooks", {
+              method: "PUT",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                isbn: isbn,
+                idUser: 2,
+                readStatus: 1,
+                endTime: time,
+              }),
+            })
+              .then((res) => res.json())
+              .then((obj) => {
+                console.log(obj);
+              })
+              .catch((error) => console.log("error:", error));
+          } else {
+          }
+        });
+      }
     </script>
+
     <script>
       var modals = document.getElementsByClassName("choice-overlay");
       // Modal을 띄우는 클래스 이름을 가져옵니다.
