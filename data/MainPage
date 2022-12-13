@@ -566,7 +566,7 @@
               let book = document.createElement('img')
               book.setAttribute('class', 'review-book')
               book.setAttribute('src', `${res.thumnail}`)
-              book.setAttribute('onclick', 'answering()')
+              book.setAttribute('onclick', `answering(${res.isbn})`)
 
               reviewBox.appendChild(book)
               
@@ -637,45 +637,53 @@
           } else {}
         });
       }
-      function answering()  {
-        swal({
-          title: '독후감 작성',
-          content: "input",
-          preConfirm: function() {
-            return new Promise(function(resolve) {
-              if (result) {
-                resolve([
-                  $('#swal-input1').val(),
-                  $('#swal-input2').val()
-                 ]);
-                }
-              });
+      const answering =  async(isbn)=> {
+        const { value: formValues } = await Swal.fire({
+          title: '감상문',
+          html:
+            '<input id="swal-input1" class="swal2-input" type="number" min="1" placeholder="시작 페이지">' +
+            '<input id="swal-input2" class="swal2-input" type="number" min="1" placeholder="끝 페이지">'+
+            '<p>리뷰</p>'+
+            '<textarea id="text-review" cols="56" rows="5"></textarea>' +
+            '<p>인용문</p>'+
+            '<textarea id="text-quote" cols="56" rows="2"></textarea>' 
+            ,
+          focusConfirm: false,
+          preConfirm: () => {
+            return {
+              isbn: isbn,
+              idUser: 2,
+              quote: document.getElementById('text-quote').value,
+              content: document.getElementById('text-review').value,
+              startPage: Number(document.getElementById('swal-input1').value),
+              endPage: Number(document.getElementById('swal-input2').value),
+              createdDate: createDate()
             }
-          }).then(function(result) {
-            swal(JSON.stringify(result));
-          })
-        // swal({
-        //   closeOnClickOutside: false,
-        //   title: "독후감 작성",
-        //   //html: true,
-        //   html: '<input id="userName" type="text">'+'<br>'+'<input id="password"+	type="password">',
-        //   content: {
-        //     element: "input",
-        //   //   attributes: {
-        //   //     placeholder: "리뷰작성",
-        //   //     type: "review",
-        //   //   },
-        //   },
-        // });
+          }
+        })
+
+        if (formValues) {
+          fetch("http://localhost:3100/reviews", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(formValues)
+            })
+              .then((res) => res.json())
+              .then((obj) => {console.log(obj)})
+              .catch((error) => console.log("error:", error));
+        }
       }
 
       function endAsk(isbn)  {
-        swal("다 읽었나요?", {
-          closeOnClickOutside: false,
-          dangerMode: true,
-          buttons: ["아니요", "네"],
+        Swal.fire({
+          title: "다 읽었나요?",
+          showCancelButton: true,
+          confirmButtonText: '네',
+          cancelButtonText: '아니오'
         }).then(result=>{
-          if (result === true) {
+          if (result.isConfirm) {
             var time = createDate()
             fetch("http://localhost:3100/userbooks", {
               method: "PUT",
