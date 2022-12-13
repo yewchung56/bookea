@@ -198,7 +198,7 @@
           };
           console.log(book);
 
-          fetch("http://localhost:3100/books", {
+          fetch("http://112.170.146.135:3100/books", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
@@ -208,7 +208,7 @@
             .then((res) => console.log(res))
             .catch((error) => console.log("error:", error));
 
-          fetch("http://localhost:3100/userbooks", {
+          fetch("http://112.170.146.135:3100/userbooks", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
@@ -264,7 +264,7 @@
                   "</back>"
               );
               $("div").append($result);
-              $("div").append("<hr>");
+              $("div").append("<hr>");;
             }
           });
         });

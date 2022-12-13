@@ -512,7 +512,7 @@
     </div>
 
     <script>
-      fetch("http://localhost:3100/userbooks/wish/2", {
+      fetch("http://112.170.146.135:3100/userbooks/wish/3", {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
@@ -534,7 +534,7 @@
           .catch((error) => console.log("error:", error));
         
         
-          fetch("http://localhost:3100/userbooks/reading/2", {
+          fetch("http://112.170.146.135:3100/userbooks/reading/3", {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
@@ -605,7 +605,7 @@
         }).then(result=>{
           if (result.isConfirmed) {
             var time = createDate()
-            fetch("http://localhost:3100/userbooks", {
+            fetch("http://112.170.146.135:3100/userbooks", {
               method: "PUT",
               headers: {
                 "Content-Type": "application/json",
@@ -621,7 +621,7 @@
               .then((obj) => {console.log(obj)})
               .catch((error) => console.log("error:", error));
           } else if(result.isDenied) {
-            fetch("http://localhost:3100/userbooks", {
+            fetch("http://112.170.146.135:3100/userbooks", {
               method: "DELETE",
               headers: {
                 "Content-Type": "application/json",
@@ -663,7 +663,7 @@
         })
 
         if (formValues) {
-          fetch("http://localhost:3100/reviews", {
+          fetch("http://112.170.146.135:3100/reviews", {
               method: "POST",
               headers: {
                 "Content-Type": "application/json",
@@ -686,7 +686,7 @@
           console.log(result)
           if (result.isConfirmed) {
             var time = createDate()
-            fetch("http://localhost:3100/userbooks", {
+            fetch("http://112.170.146.135:3100/userbooks", {
               method: "PUT",
               headers: {
                 "Content-Type": "application/json",
