@@ -603,7 +603,7 @@
           denyButtonText: `위시리스트에서 삭제`,
           cancelButtonText: '아니오'
         }).then(result=>{
-          if (result.isConfirm) {
+          if (result.isConfirmed) {
             var time = createDate()
             fetch("http://localhost:3100/userbooks", {
               method: "PUT",
@@ -683,7 +683,8 @@
           confirmButtonText: '네',
           cancelButtonText: '아니오'
         }).then(result=>{
-          if (result.isConfirm) {
+          console.log(result)
+          if (result.isConfirmed) {
             var time = createDate()
             fetch("http://localhost:3100/userbooks", {
               method: "PUT",
