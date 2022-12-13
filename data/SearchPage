@@ -10,27 +10,35 @@
     header {
       background: white;
       border-color: #2358e1;
-      width: 100%;
       height: 80px;
       display: flex;
       align-items: center;
-      position: sticky;
-      top: 0;
     }
     back {
-      width: 100%;
       display: flex;
-      justify-content: space-evenly;
+      justify-content: space-between;
       align-items: center;
+
+    }
+    #content {
+      margin: 10px 50px 10px;
+      justify-content: space-evenly;
+      padding: 50px;
+      font-family: "Comfortaa";
+      background-color: #fffbeb;
+    }
+    #book{
+      justify-content: space-between;
     }
     body {
       background: #f3dc63;
       margin: 0;
+      display: grid;
       align-items: center;
     }
     h1 {
       color: #2358e1;
-      font-family: EF-다이어리;
+      font-family: "EF_Diary";
       font-style: normal;
       font-weight: 400;
       font-size: 28.4444px;
@@ -53,14 +61,15 @@
       align-items: flex-start;
     }
     h3 {
-      margin: 40px;
+      justify-items: space-between;
+      margin-left: 80px;
       font-family: "Comfortaa";
       font-weight: 400;
       font-size: 16px;
       line-height: 32px;
     }
     h5 {
-      margin: 0px 200px 0px 200px;
+      margin: 0px 50px 0px 50px;
       font-family: "Comfortaa";
       font-weight: 400;
       font-size: 16px;
@@ -87,8 +96,8 @@
     input {
       line-height: 18px;
       width: 700px;
-      font-family: "Comfortaa";
-      font-size: 14px;
+      font-family: "EF_Diary";
+      font-size: 16px;
       align-items: center;
       padding: 10px;
       border-color: #2358e1;
@@ -103,15 +112,6 @@
       background-color: #2358e1;
       line-height: 30px;
       border-radius: 5px;
-    }
-    #content {
-      font-family: "Comfortaa";
-      margin: 50px;
-      background-color: #fffbeb;
-      width: 90%;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-around;
     }
     #logout {
       margin: 30px;
@@ -130,16 +130,16 @@
       align-self: center;
     }
     hr {
-      margin: 20px;
+      margin: 5px;
     }
-    /*  result{
-        font-family: 'Comfortaa';
-        margin: 40px;
-        display: flex;
-        justify-content: space-between;
-      } */
-    p {
-      text-align: center;
+    #thumb{
+      margin-left: 30px;
+      display: grid;
+      justify-content: space-evenly;
+      align-items: center;
+    }
+    p{
+      width: 80px;
     }
   </style>
 </head>
@@ -157,7 +157,7 @@
     <h2>검색결과</h2>
     <back>
       <h3>책 표지</h3>
-      <h5>책 제목</h5>
+      <h3>책 제목</h3>
       <h3>저자</h3>
       <h3>출판사</h3>
       <h3>발행일</h3>
@@ -249,11 +249,9 @@
               const b_publisher = msg.documents[i].publisher;
 
               var $result = $(
-                "<back>" +
-                  "<img src = '" +
-                  msg.documents[i].thumbnail +
-                  "'/>" +
-                  "<p>" +
+                "<back>"+
+                   `<img id ="thumb" src = `+ msg.documents[i].thumbnail+`/>` +
+                   "<p>" +
                   msg.documents[i].title +
                   "<p>" +
                   msg.documents[i].authors +
@@ -290,21 +288,19 @@
               for (var i = 0; i < 10; i++) {
                 const dateArr = msg.documents[i].datetime.split("T");
                 var $result = $(
-                  "<back>" +
-                    "<img src = '" +
-                    msg.documents[i].thumbnail +
-                    "'/>" +
-                    "<p>" +
-                    msg.documents[i].title +
-                    "<p>" +
-                    msg.documents[i].authors +
-                    "<p>" +
-                    msg.documents[i].publisher +
-                    "<p>" +
-                    dateArr[0] +
-                    "<p>" +
-                    `<i class="fa-solid fa-cart-shopping fa-2x" onclick="hello()"></i>` +
-                    "</back>"
+                  "<back>"+
+                   `<img id ="thumb" src = `+ msg.documents[i].thumbnail+`/>` +
+                   "<p>" +
+                  msg.documents[i].title +
+                  "<p>" +
+                  msg.documents[i].authors +
+                  "<p>" +
+                  msg.documents[i].publisher +
+                  "<p>" +
+                  dateArr[0] +
+                  "<p>" +
+                  `<i id="wish" class="fa-solid fa-cart-shopping fa-2x" onclick="hello()"></i>` +
+                  "</back>"
                 );
 
                 $("div").append($result);

@@ -1,3 +1,9 @@
+ 
+    <script src="bower_components/sweetalert2/dist/sweetalert2.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="alert/dist/sweetalert-dev.js"></script>
+  <link rel="stylesheet" href="alert/dist/sweetalert.css">
 <style>
   .center {
     width: 100%;
@@ -128,6 +134,59 @@
 </style>
 
 <body>
+  <script>
+    fetch("http://localhost:3100/userbooks/fin/3", {
+      //2번으로 바꾸기
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => res.json())
+      .then((obj) => {
+        console.log(obj.res[0].thumnail);
+        obj.res.forEach((res) => {
+          let libBox = document.getElementsByClassName("imgList")[0];
+
+          let finBooks = document.createElement("img");
+          finBooks.setAttribute("class", "imgC");
+          finBooks.setAttribute("src", `${res.thumnail}`);
+          //finBooks.setAttribute("isbn", `${res.isbn}`);
+          finBooks.setAttribute("onclick", `modal(${res.thumnail})`);
+
+          libBox.appendChild(finBooks);
+          console.log(finBooks);
+          l_isbn = res.isbn;
+
+          let data = {
+            isbn: "String",
+            idUser: 3,
+
+            get isbn() {
+              return this.isbn;
+            },
+
+            get idUser() {
+              return this.idUser;
+            },
+
+            set userdata(value) {
+              this.isbn = value.isbn;
+              this.idUser = 3;
+            },
+          };
+          data.userdata = alert(data.isbn); // Alice
+          alert(data.idUser); // Special
+        });
+      })
+      .catch((error) => console.log("error:", error));
+
+    // var userdata = {
+    //   isbn: l_isbn,
+    //   userId: 3,
+    // };
+    
+  </script>
   <div id="header">
     <h1><a href="/?id=MainPage">BOOKEA</a></h1>
     <div id="search">
@@ -146,82 +205,43 @@
           alt="책 이미지"
         />
       </div>
-      <div class="imgC">
-        <img
-          src="https://search1.kakaocdn.net/thumb/R120x174.q85/?fname=http%3A%2F%2Ft1.daumcdn.net%2Flbook%2Fimage%2F4966863%3Ftimestamp%3D20221003230108"
-        />
-      </div>
-      <div class="imgC">
-        <img
-          src="https://search1.kakaocdn.net/thumb/R120x174.q85/?fname=http%3A%2F%2Ft1.daumcdn.net%2Flbook%2Fimage%2F923727%3Ftimestamp%3D20220103152724"
-        />
-      </div>
-      <div class="imgC">
-        <img
-          src="https://search1.kakaocdn.net/thumb/R120x174.q85/?fname=http%3A%2F%2Ft1.daumcdn.net%2Flbook%2Fimage%2F923727%3Ftimestamp%3D20220103152724"
-          alt="책 이미지"
-        />
-      </div>
-      <div class="imgC">
-        <img
-          src="https://search1.kakaocdn.net/thumb/R120x174.q85/?fname=http%3A%2F%2Ft1.daumcdn.net%2Flbook%2Fimage%2F923727%3Ftimestamp%3D20220103152724"
-          alt="책 이미지"
-        />
-      </div>
-      <div class="imgC">
-        <img
-          src="https://search1.kakaocdn.net/thumb/R120x174.q85/?fname=http%3A%2F%2Ft1.daumcdn.net%2Flbook%2Fimage%2F923727%3Ftimestamp%3D20220103152724"
-          alt="책 이미지"
-        />
-      </div>
-      <div class="imgC">
-        <img
-          src="https://search1.kakaocdn.net/thumb/R120x174.q85/?fname=http%3A%2F%2Ft1.daumcdn.net%2Flbook%2Fimage%2F923727%3Ftimestamp%3D20220103152724"
-          alt="책 이미지"
-        />
-      </div>
-      <div class="imgC">
-        <img
-          src="https://search1.kakaocdn.net/thumb/R120x174.q85/?fname=http%3A%2F%2Ft1.daumcdn.net%2Flbook%2Fimage%2F923727%3Ftimestamp%3D20220103152724"
-          alt="책 이미지"
-        />
-      </div>
-      <div class="imgC">
-        <img
-          src="https://search1.kakaocdn.net/thumb/R120x174.q85/?fname=http%3A%2F%2Ft1.daumcdn.net%2Flbook%2Fimage%2F923727%3Ftimestamp%3D20220103152724"
-          alt="책 이미지"
-        />
-      </div>
-      <div class="imgC">
-        <img
-          src="https://search1.kakaocdn.net/thumb/R120x174.q85/?fname=http%3A%2F%2Ft1.daumcdn.net%2Flbook%2Fimage%2F923727%3Ftimestamp%3D20220103152724"
-          alt="책 이미지"
-        />
-      </div>
-      <div class="imgC">
-        <img
-          src="https://search1.kakaocdn.net/thumb/R120x174.q85/?fname=http%3A%2F%2Ft1.daumcdn.net%2Flbook%2Fimage%2F923727%3Ftimestamp%3D20220103152724"
-          alt="책 이미지"
-        />
-      </div>
-      <div class="imgC">
-        <img
-          src="https://search1.kakaocdn.net/thumb/R120x174.q85/?fname=http%3A%2F%2Ft1.daumcdn.net%2Flbook%2Fimage%2F923727%3Ftimestamp%3D20220103152724"
-          alt="책 이미지"
-        />
-      </div>
-      <div class="imgC">
-        <img
-          src="https://search1.kakaocdn.net/thumb/R120x174.q85/?fname=http%3A%2F%2Ft1.daumcdn.net%2Flbook%2Fimage%2F923727%3Ftimestamp%3D20220103152724"
-          alt="책 이미지"
-        />
-      </div>
     </div>
-    <!-- <div class="bar"></div>
-    <div class="imgList"></div>
-    <div class="bar"></div>
-    <div class="imgList"></div> -->
-    <div class="modal">
+
+    <script>
+        function modal(isbn) {
+            swal("리뷰~~~",{
+                closeOnClickOutside: false,
+                dangerMode: true,
+                button: "닫기",
+            }).then(result=>{
+                if (result=== true){
+                    var time = createDate()
+                    fetch("http://localhost:3100/reviews", {
+                        //2번으로 바꾸기
+                        method: "GET",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify(userdata),
+                        })
+                        .then((res) => res.json())
+                        .then((obj) => {
+                            console.log(obj.res[0].isbn);
+                        })
+                        .catch((error) => console.log("error:", error));
+                }else{
+                }
+            });
+        }
+
+    </script>
+    
+
+
+
+
+
+    <!-- <div class="modal">
       <span class="close">&times;</span>
       <div class="modal_content">
         <p>2022.12.10</p>
@@ -249,25 +269,6 @@
   </div>
 
   <script>
-    // const modal = document.querySelector(".modal");
-    // const img = document.querySelector(".imgC");
-    // const modal_img = document.querySelector(".modal_content");
-    // const span = document.querySelector(".close");
-
-    // function modalDisplay(text) {
-    //   modal.style.display = text;
-    // }
-    // img.addEventListener("click", () => {
-    //   modalDisplay("block");
-    //   modal_img.src = img.src;
-    // }); //이미지 클릭하면 모달창 띄움 모달의 display를 block으로 바꿔준 후에 이미지의 display를 block으로 바꾼다. 이유는 모달창 스크롤할 때 모달창 뒤에 있는 이미지가 움직이지 않게 하기 위해서
-    // span.addEventListener("click", () => {
-    //   modalDisplay("none");
-    // });
-    // modal.addEventListener("click", () => {
-    //   modalDisplay("none");
-    // });
-    // Modal을 가져옵니다.
     var modals = document.getElementsByClassName("modal");
     // Modal을 띄우는 클래스 이름을 가져옵니다.
     var btns = document.getElementsByClassName("imgC");
@@ -307,5 +308,5 @@
         event.target.style.display = "none";
       }
     };
-  </script>
+  </script> —>
 </body>
