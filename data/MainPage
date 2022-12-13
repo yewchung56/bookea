@@ -6,6 +6,7 @@
     <script src="bower_components/es6-promise/promise.min.js"></script> 
     <script src="bower_components/sweetalert2/dist/sweetalert2.min.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <script src="alert/dist/sweetalert-dev.js"></script>
   <link rel="stylesheet" href="alert/dist/sweetalert.css">
     <script
@@ -14,7 +15,8 @@
       crossorigin="anonymous"
     ></script>
     <script src="https://use.fontawesome.com/releases/v6.2.1/js/all.js"></script>
-
+    
+    
     <script>
       $(document).ready(function() {
         calendarInit();
@@ -291,12 +293,12 @@
         justify-self: unset;
         align-self: center;
       }
-      #img1{
+      .img1{
         padding-bottom: 30px;
         width: 50%;
         
       }
-      #read{
+      .read{
         width: 95%;
         padding-bottom: 10px;
       }
@@ -304,9 +306,11 @@
         width: 1300px;
         display: flex;
         flex-direction: row;
-        justify-content: space-around;
+        justify-content:flex-start
+        
+        
       }
-      #book{
+      .book{
         display: flex;
         flex-direction: column;
         width: 15%;
@@ -413,7 +417,7 @@
             text-shadow: 1px 1px 2px gray;
             color: white;
         }
-        .review-content {
+        #review-content {
             margin-top: 20px;
             padding: 0px 10px;
             text-shadow: 1px 1px 2px gray;
@@ -443,12 +447,13 @@
           font-family: "EF_Diary";
           font-size: 40px;
         }
-    
+        .review-book {
+          margin: 0px 10px 0px 0px;
+        }
 
     </style>
 </head>
   <body>
-
     <div id="header">
       <h1 id="title">BOOKEA</h1>
       <div id="search">
@@ -462,12 +467,6 @@
     <div id="main">
       <div id="wish">
         <h1 id="wishlist">위시리스트</h1>
-        <img id ="img1" 
-        src="https://search1.kakaocdn.net/thumb/R120x174.q85/?fname=http%3A%2F%2Ft1.daumcdn.net%2Flbook%2Fimage%2F923727%3Ftimestamp%3D20220103152724"
-        onclick="asking()"/>
-        <img id ="img1" 
-        src="https://search1.kakaocdn.net/thumb/R120x174.q85/?fname=http%3A%2F%2Ft1.daumcdn.net%2Flbook%2Fimage%2F923727%3Ftimestamp%3D20220103152724"
-        onclick="asking()"/>
       </div>
       <div class="sec_cal">
         <div class="cal_nav">
@@ -489,69 +488,140 @@
         </div>
         <h3>읽는 중</h3>
         <div id="reading">
-          <div id="book">
-            <img id="read" src="https://search1.kakaocdn.net/thumb/R120x174.q85/?fname=http%3A%2F%2Ft1.daumcdn.net%2Flbook%2Fimage%2F923727%3Ftimestamp%3D20220103152724"/>
-            <button class="read-end">다 읽었어요</button>
-          </div>
-          <div id="book">
-            <img id="read" src="https://search1.kakaocdn.net/thumb/R120x174.q85/?fname=http%3A%2F%2Ft1.daumcdn.net%2Flbook%2Fimage%2F923727%3Ftimestamp%3D20220103152724"/>
-            <button class="read-end">다 읽었어요</button>
-          </div>
-          <div id="book">
-            <img id="read" src="https://search1.kakaocdn.net/thumb/R120x174.q85/?fname=http%3A%2F%2Ft1.daumcdn.net%2Flbook%2Fimage%2F923727%3Ftimestamp%3D20220103152724"/>
-            <button class="read-end">다 읽었어요</button>
-          </div>
-          <div id="book">
-            <img id="read" src="https://search1.kakaocdn.net/thumb/R120x174.q85/?fname=http%3A%2F%2Ft1.daumcdn.net%2Flbook%2Fimage%2F923727%3Ftimestamp%3D20220103152724"/>
-            <button class="read-end">다 읽었어요</button>
-          </div>
-          <div id="book">
-            <img id="read" src="https://search1.kakaocdn.net/thumb/R120x174.q85/?fname=http%3A%2F%2Ft1.daumcdn.net%2Flbook%2Fimage%2F923727%3Ftimestamp%3D20220103152724"/>
-            <button class="read-end">다 읽었어요</button>
-          </div>
-          <div id="book">
-            <img id="read" src="https://search1.kakaocdn.net/thumb/R120x174.q85/?fname=http%3A%2F%2Ft1.daumcdn.net%2Flbook%2Fimage%2F923727%3Ftimestamp%3D20220103152724"/>
-            <button class="read-end">다 읽었어요</button>
-          </div>
+          
         </div>
       </div>
     </div>
-
-    <div class="modal-overlay">
-      <div class="modal-window">
-          <div class="content">
-              <p>다 읽었나요?</p>
-              <button>네</button>
-              <button class="no">아니요</button>
-          </div>
-      </div>
-    </div>
-    <div class="modal-overlay">
-      <div class="modal-window">
-          <div class="content">
-              <p>다 읽었나요?</p>
-              <button>네</button>
-              <button class="no">아니요</button>
-          </div>
-      </div>
-    </div>
     <div class="review-overlay">
-      <div class="review-window" onclick="answering()">
+      <div class="review-window">
         <div class="close-area">X</div>
-          <div class="review-content">
+          <div id="review-content">
               <p>어떤 책을 읽으셨나요?</p>
-              <img id="review-book" src="https://search1.kakaocdn.net/thumb/R120x174.q85/?fname=http%3A%2F%2Ft1.daumcdn.net%2Flbook%2Fimage%2F923727%3Ftimestamp%3D20220103152724"/>
-              <img id="review-book" src="https://search1.kakaocdn.net/thumb/R120x174.q85/?fname=http%3A%2F%2Ft1.daumcdn.net%2Flbook%2Fimage%2F923727%3Ftimestamp%3D20220103152724"/>
             </div>
       </div>
     </div>
 
+    <script>
+      fetch("http://localhost:3100/userbooks/wish/2", {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+          .then((res) => res.json())
+          .then((obj) => {console.log(obj.res[0].thumnail)
+            obj.res.forEach((res)=> {
+              let wishBox = document.getElementById("wish")
+
+              let wishBooks = document.createElement('img')
+              wishBooks.setAttribute('class', 'img1')
+              wishBooks.setAttribute('src', `${res.thumnail}`)
+              wishBooks.setAttribute('onclick', `asking(${res.isbn})`)
+
+              wishBox.appendChild(wishBooks)
+            });
+          })
+          .catch((error) => console.log("error:", error));
+        
+        
+          fetch("http://localhost:3100/userbooks/reading/2", {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+          .then((res) => res?.json())
+          .then((obj) => {console.log(obj?.res[0].thumnail)
+            obj.res.forEach((res)=> {
+              let readBox = document.getElementById("reading")
+
+              let bookBox = document.createElement('div')
+              bookBox.setAttribute('class', 'book')
+              let readingBooks = document.createElement('img')
+              readingBooks.setAttribute('class', 'read')
+              readingBooks.setAttribute('src', `${res.thumnail}`)
+              
+              
+              let endBtn = document.createElement('button')
+              endBtn.setAttribute('class', 'read-end')
+              endBtn.setAttribute('onclick', `endAsk(${res.isbn})`)
+              endBtn.innerText = "다 읽었어요"
+
+              bookBox.appendChild(readingBooks)
+              bookBox.appendChild(endBtn)
+
+              readBox.appendChild(bookBox)
+              
+              let reviewBox = document.getElementById('review-content')
+              let book = document.createElement('img')
+              book.setAttribute('class', 'review-book')
+              book.setAttribute('src', `${res.thumnail}`)
+              book.setAttribute('onclick', 'answering()')
+
+              reviewBox.appendChild(book)
+              
+            });
+          })
+          .catch((error) => console.log("error:", error));
+          
+    </script>
+
     <script type="text/javascript">
-      function asking()  {
+      function createDate() {
+        var today = new Date()
+        
+        var year = today.getFullYear()
+        var month = ('0' + (today.getMonth() + 1)).slice(-2)
+        var day = ('0' + today.getDate()).slice(-2)
+
+        var hours = ('0' + today.getHours()).slice(-2)
+        var minutes = ('0' + today.getMinutes()).slice(-2)
+        var seconds = ('0' + today.getSeconds()).slice(-2)
+
+        var date = year + '-' + month + '-' + day + ' ' + hours + ":" + minutes + ":" + seconds
+        
+        return date
+      }
+
+
+      function asking(isbn)  {
         swal("이 책을 읽으시겠습니까?", {
           closeOnClickOutside: false,
           dangerMode: true,
-          buttons: true,
+          buttons: ["위시리스트에서 삭제", "네"],
+        }).then(result=>{
+          if (result === true) {
+            var time = createDate()
+            fetch("http://localhost:3100/userbooks", {
+              method: "PUT",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                isbn: isbn,
+                idUser: 2,
+                readStatus: 0,
+                startTime: time
+              })
+            })
+              .then((res) => res.json())
+              .then((obj) => {console.log(obj)})
+              .catch((error) => console.log("error:", error));
+          } else {
+            fetch("http://localhost:3100/userbooks", {
+              method: "DELETE",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                isbn: isbn,
+                idUser: 2
+              })
+            })
+              .then((res) => res.json())
+              .then((obj) => {console.log(obj)})
+              .catch((error) => console.log("error:", error));
+          }
         });
       }
       function answering()  {
@@ -587,51 +657,38 @@
         //   },
         // });
       }
-    </script>
-    </script>
 
-
-  <script>
-    var modals = document.getElementsByClassName("modal-overlay");
-    // Modal을 띄우는 클래스 이름을 가져옵니다.
-    var btns = document.getElementsByClassName("read-end");
-    // Modal을 닫는 close 클래스를 가져옵니다.
-    var spanes = document.getElementsByClassName("no");
-    var funcs = [];
- 
-    // Modal을 띄우고 닫는 클릭 이벤트를 정의한 함수
-    function Modal(num) {
-      return function() {
-        // 해당 클래스의 내용을 클릭하면 Modal을 띄웁니다.
-        btns[num].onclick =  function() {
-          modals[num].style.display = "flex";
-          console.log(num);
-        };
- 
-    // <span> 태그(X 버튼)를 클릭하면 Modal이 닫습니다.
-        spanes[num].onclick = function() {
-          modals[num].style.display = "none";
-        };
-      };
-    }
- 
-    // 원하는 Modal 수만큼 Modal 함수를 호출해서 funcs 함수에 정의합니다.
-    for(var i = 0; i < btns.length; i++) {
-      funcs[i] = Modal(i);
-    }
- 
-    // 원하는 Modal 수만큼 funcs 함수를 호출합니다.
-    for(var j = 0; j < btns.length; j++) {
-      funcs[j]();
-    }
- 
-    // Modal 영역 밖을 클릭하면 Modal을 닫습니다.
-    window.onclick = function(event) {
-      if (event.target.className == "modal-overlay") {
-          event.target.style.display = "none";
+      function endAsk(isbn)  {
+        swal("다 읽었나요?", {
+          closeOnClickOutside: false,
+          dangerMode: true,
+          buttons: ["아니요", "네"],
+        }).then(result=>{
+          if (result === true) {
+            var time = createDate()
+            fetch("http://localhost:3100/userbooks", {
+              method: "PUT",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                isbn: isbn,
+                idUser: 2,
+                readStatus: 1,
+                endTime: time
+              })
+            })
+              .then((res) => res.json())
+              .then((obj) => {console.log(obj)})
+              .catch((error) => console.log("error:", error));
+          } else {
+          }
+        });
+        
       }
-    };
-  </script>
+    </script>
+
+
   <script>
     var modals = document.getElementsByClassName("choice-overlay");
     // Modal을 띄우는 클래스 이름을 가져옵니다.

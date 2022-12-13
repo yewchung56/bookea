@@ -171,8 +171,56 @@
       crossorigin="anonymous"
     ></script>
     <script type="text/javascript">
-      function hello() {
-        swal("위시리스트에 추가되었습니다.", "", "success");
+      function hello(obj) {
+        swal(" 책이 위시리스트에 추가되었습니다.", "", "success");
+
+        var p_isbn = JSON.stringify(obj);
+        console.log(p_isbn);
+
+        $.ajax({
+          method: "GET",
+          url: "https://dapi.kakao.com/v3/search/book?target=isbn",
+          data: { query: p_isbn, page: 1 },
+          headers: {
+            Authorization: "KakaoAK 5032971dfe6ef4c1396c474be397c09c",
+          },
+        }).done((result) => {
+          var c_publishDate = result.documents[0].datetime.split("T")?.[0];
+          console.log(result.documents[0]);
+
+          var book = {
+            isbn: p_isbn,
+            thumnail: result.documents[0].thumbnail,
+            title: result.documents[0].title,
+            publisher: result.documents[0].publisher,
+            authors: result.documents[0].authors,
+            publishDate: c_publishDate,
+          };
+          console.log(book);
+
+          fetch("http://localhost:3100/books", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(book),
+          })
+            .then((res) => console.log(res))
+            .catch((error) => console.log("error:", error));
+
+          fetch("http://localhost:3100/userbooks", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              isbn: p_isbn,
+              idUser: 2,
+            }),
+          })
+            .then((res) => console.log(res))
+            .catch((error) => console.log("error:", error));
+        });
       }
     </script>
 
@@ -190,11 +238,16 @@
               Authorization: "KakaoAK 5032971dfe6ef4c1396c474be397c09c",
             },
           }).done(function (msg) {
-            console.log(msg.documents[0].title);
-            console.log(msg.documents[0].thumbnail);
-            console.log(msg.documents[0].authors);
+            // console.log(msg.documents[0].title);
+            // console.log(msg.documents[0].thumbnail);
+            // console.log(msg.documents[0].authors);
             for (var i = 0; i < 10; i++) {
               const dateArr = msg.documents[i].datetime.split("T");
+
+              const b_isbn = msg.documents[i].isbn.split(" ")?.[1];
+
+              const b_publisher = msg.documents[i].publisher;
+
               var $result = $(
                 "<back>" +
                   "<img src = '" +
@@ -209,7 +262,7 @@
                   "<p>" +
                   dateArr[0] +
                   "<p>" +
-                  `<i id="wish" class="fa-solid fa-cart-shopping fa-2x" onclick="hello()"></i>` +
+                  `<i id="wish" class="fa-solid fa-cart-shopping fa-2x" onclick="hello(${b_isbn})"></i>` +
                   "</back>"
               );
               $("div").append($result);

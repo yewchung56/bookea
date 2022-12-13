@@ -224,7 +224,6 @@ var app = http.createServer(function (request, response) {
           //console.log(data.idUser);
           if (data.message === "login") {
             //console.log(data.idUser);
-            global.idUser = data.idUser;
             response.writeHead(302, { Location: "/?id=MainPage" }); //로그인 페이지로 이동 or 홈으로 이동?
             response.end("success");
           } else {
