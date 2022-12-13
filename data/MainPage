@@ -7,6 +7,10 @@
     <script src="bower_components/sweetalert2/dist/sweetalert2.min.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script src="sweetalert2.all.min.js"></script>
+    <script src="sweetalert2.min.js"></script>
+    <link rel="stylesheet" href="sweetalert2.min.css">
   <script src="alert/dist/sweetalert-dev.js"></script>
   <link rel="stylesheet" href="alert/dist/sweetalert.css">
     <script
@@ -15,7 +19,6 @@
       crossorigin="anonymous"
     ></script>
     <script src="https://use.fontawesome.com/releases/v6.2.1/js/all.js"></script>
-    
     
     <script>
       $(document).ready(function() {
@@ -592,12 +595,15 @@
 
 
       function asking(isbn)  {
-        swal("이 책을 읽으시겠습니까?", {
-          closeOnClickOutside: false,
-          dangerMode: true,
-          buttons: ["위시리스트에서 삭제", "네"],
+        Swal.fire({
+          title: '이 책을 읽으시겠습니까?',
+          showDenyButton: true,
+          showCancelButton: true,
+          confirmButtonText: '네',
+          denyButtonText: `위시리스트에서 삭제`,
+          cancelButtonText: '아니오'
         }).then(result=>{
-          if (result === true) {
+          if (result.isConfirm) {
             var time = createDate()
             fetch("http://localhost:3100/userbooks", {
               method: "PUT",
@@ -614,7 +620,7 @@
               .then((res) => res.json())
               .then((obj) => {console.log(obj)})
               .catch((error) => console.log("error:", error));
-          } else {
+          } else if(result.isDenied) {
             fetch("http://localhost:3100/userbooks", {
               method: "DELETE",
               headers: {
@@ -628,15 +634,13 @@
               .then((res) => res.json())
               .then((obj) => {console.log(obj)})
               .catch((error) => console.log("error:", error));
-          }
+          } else {}
         });
       }
       function answering()  {
         swal({
           title: '독후감 작성',
-          html:
-          '<input type="text" id="swal-input1" class="swal2-input" autofocus>' +
-          '<input id="swal-input2" class="swal2-input">',
+          content: "input",
           preConfirm: function() {
             return new Promise(function(resolve) {
               if (result) {

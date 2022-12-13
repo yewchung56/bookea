@@ -1,9 +1,8 @@
- 
-    <script src="bower_components/sweetalert2/dist/sweetalert2.min.js"></script>
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-  <script src="alert/dist/sweetalert-dev.js"></script>
-  <link rel="stylesheet" href="alert/dist/sweetalert.css">
+<script src="bower_components/sweetalert2/dist/sweetalert2.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="alert/dist/sweetalert-dev.js"></script>
+<link rel="stylesheet" href="alert/dist/sweetalert.css" />
+
 <style>
   .center {
     width: 100%;
@@ -152,39 +151,15 @@
           finBooks.setAttribute("class", "imgC");
           finBooks.setAttribute("src", `${res.thumnail}`);
           //finBooks.setAttribute("isbn", `${res.isbn}`);
-          finBooks.setAttribute("onclick", `modal(${res.thumnail})`);
+          finBooks.setAttribute("onclick", `modal(${res.isbn})`);
 
           libBox.appendChild(finBooks);
           console.log(finBooks);
-          l_isbn = res.isbn;
 
-          let data = {
-            isbn: "String",
-            idUser: 3,
-
-            get isbn() {
-              return this.isbn;
-            },
-
-            get idUser() {
-              return this.idUser;
-            },
-
-            set userdata(value) {
-              this.isbn = value.isbn;
-              this.idUser = 3;
-            },
-          };
-          data.userdata = alert(data.isbn); // Alice
-          alert(data.idUser); // Special
         });
       })
       .catch((error) => console.log("error:", error));
 
-    // var userdata = {
-    //   isbn: l_isbn,
-    //   userId: 3,
-    // };
     
   </script>
   <div id="header">
@@ -207,6 +182,8 @@
       </div>
     </div>
 
+
+   
     <script>
         function modal(isbn) {
             swal("리뷰~~~",{
@@ -214,19 +191,23 @@
                 dangerMode: true,
                 button: "닫기",
             }).then(result=>{
+              console.log(result)
                 if (result=== true){
-                    var time = createDate()
                     fetch("http://localhost:3100/reviews", {
                         //2번으로 바꾸기
                         method: "GET",
                         headers: {
                             "Content-Type": "application/json",
                         },
-                        body: JSON.stringify(userdata),
+                        body: JSON.stringify({
+                            isbn: isbn,
+                            idUser: 3,
+                            
+                        }),
                         })
                         .then((res) => res.json())
                         .then((obj) => {
-                            console.log(obj.res[0].isbn);
+                            console.log(obj.res[0]);
                         })
                         .catch((error) => console.log("error:", error));
                 }else{
