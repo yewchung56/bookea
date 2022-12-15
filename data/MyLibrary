@@ -1,6 +1,10 @@
 <script src="bower_components/sweetalert2/dist/sweetalert2.min.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script src="alert/dist/sweetalert-dev.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<script src="sweetalert2.all.min.js"></script>
+<script src="sweetalert2.min.js"></script>
+<link rel="stylesheet" href="sweetalert2.min.css">
 <link rel="stylesheet" href="alert/dist/sweetalert.css" />
 
 <style>
@@ -201,36 +205,33 @@
                         })
                         .then((res) => res.json())
                         .then((obj) => {
+                            var list =[]
                             obj.res.forEach((res)=> {
-                                console.log(res.content);
+                                console.log(res);
 
                                 const date = res.createdDate.split("T")[0]
                                 const content = res.content
                                 const quote = res.quote
-                                function repeat(date, content, quote) {
-                                    `
-                                        날짜: ${date}
-                                        리뷰: ${content}
-                                        인용구: ${quote}
-                                    `
-                                }
+
+                                var review = `
+                                                날짜: ${date}</br>
+                                                리뷰: ${content}</br>
+                                                인용구: ${quote}</br>
+                                                </br>
+                                            `
+                                            list.push(review)
                                 
-                                    swal({
-                                        title: title,
-                                        text: 
-                                        `
-                                        날짜: ${date}
-                                        리뷰: ${res.content}
-                                        인용구: ${obj.res[0].quote}
-                                        `,
-                                        closeOnClickOutside: false,
-                                        dangerMode: true,
-                                        button: "닫기",
-                                    }).then(result=>{
-                                    
-                                    });
                                 
                             })
+                            Swal.fire({
+                                        title: title,
+                                        html: list,
+                                        //closeOnClickOutside: false,
+                                        //dangerMode: true,
+                                        //button: "닫기",
+                                    }).then(result=>{
+                                        console.log(list)
+                                    });
                             
                             
                         })

@@ -214,7 +214,7 @@
             },
             body: JSON.stringify({
               isbn: p_isbn,
-              idUser: 2,
+              idUser: 3,
             }),
           })
             .then((res) => console.log(res))
