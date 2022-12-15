@@ -13,6 +13,8 @@
       height: 80px;
       display: flex;
       align-items: center;
+      position: sticky;
+      top: 0;
     }
     back {
       display: flex;
@@ -145,7 +147,9 @@
 
 <body>
   <header>
-    <a href="/?id=MainPage"><h1>BOOKEA</h1></a>
+    <a href="/?id=MainPage" style="text-decoration-line: none"
+      ><h1>BOOKEA</h1></a
+    >
     <input id="query" type="text" placeholder="검색어를 입력해 주세요" />
     <button id="search">SEARCH</button>
     <a href="/?id=MyLibrary"><i class="fa-solid fa-book fa-2x"></i></a>
@@ -225,22 +229,24 @@
 
     <script>
       $(document).ready(function () {
-        fetch("http://localhost:3100/books", {
-            method: "GET",
-            headers: {
-              "Content-Type": "application/json",
-            },
+        fetch("http://112.170.146.135:3100/books", {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
         })
           .then((res) => res.json())
-          .then((obj) => {console.log(obj)
+          .then((obj) => {
+            console.log(obj);
             $("div").html("");
-            obj.res.forEach(res => {
-              
+            obj.res.forEach((res) => {
               const dateArr = res.publishDate.split("T");
               var $result = $(
-                "<back>"+
-                   `<img id ="thumb" src = `+ res.thumnail+`/>` +
-                   "<p>" +
+                "<back>" +
+                  `<img id ="thumb" src = ` +
+                  res.thumnail +
+                  `/>` +
+                  "<p>" +
                   res.title +
                   "<p>" +
                   res.authors +
@@ -253,11 +259,10 @@
                   "</back>"
               );
               $("div").append($result);
-              $("div").append("<hr>"); 
-            })
+              $("div").append("<hr>");
+            });
           })
           .catch((error) => console.log("error:", error));
-
 
         var pageNum = 1;
         $("#search").click(function () {

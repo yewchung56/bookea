@@ -174,7 +174,7 @@
     
   </script>
   <div id="header">
-    <h1><a href="/?id=MainPage">BOOKEA</a></h1>
+    <h1 style="margin-top: 30px; font-size: 35px;"><a href="/?id=MainPage">BOOKEA</a></h1>
     <div id="search">
       <a href="/?id=SearchPage"><button id="searchBtn">Search</button></a>
     </div>
