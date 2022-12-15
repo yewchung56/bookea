@@ -265,8 +265,9 @@
       }
       #title{
         color: #2358E1;
-        font-size: 30px;
-        font-family: "EF_Diary";
+        font-size: 35px;
+        font-family: 'Comfortaa', cursive;
+        margin-top: 20px;
       }
       #searchBox{
         width: 80%;
@@ -460,6 +461,9 @@
         .review-book {
           margin: 0px 10px 0px 0px;
         }
+        .bookBtn{
+          padding-top: 20px;
+        }
 
     </style>
 </head>
@@ -470,7 +474,7 @@
         <a href="/?id=SearchPage"><button id="searchBtn">Search</button></a>
       </div>
       <div id="user">
-        <a href="/?id=MyLibrary"><i class="fa-solid fa-book fa-2x"></i></a>
+        <a href="/?id=MyLibrary"><i id="bookBtn" class="fa-solid fa-book fa-2x"></i></a>
         <button id="logout">Log out</button>
       </div>
     </div>
