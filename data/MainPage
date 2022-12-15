@@ -127,7 +127,7 @@
     <style>
       /* section calendar */
       .sec_cal {
-        width: 100%;
+        width: 80%;
         font-family: "NotoSansR";
         background-color: #fffbeb;
         padding: 50px;
@@ -331,7 +331,7 @@
       .book {
         display: flex;
         flex-direction: column;
-        width: 15%;
+        width: 10%;
         align-items: center;
         padding: 20px;
         filter: drop-shadow(3px 3px 3px rgb(99, 99, 99));
@@ -474,12 +474,11 @@
   <body>
     <div id="header">
       <h1 id="title">BOOKEA</h1>
-      <div id="search">
-        <a href="/?id=SearchPage"><button id="searchBtn">Search</button></a>
-      </div>
+
       <div id="user">
         <a href="/?id=MyLibrary"><i class="fa-solid fa-book fa-2x"></i></a>
-        <button id="logout">Log out</button>
+        <a href="/?id=SearchPage"><button id="searchBtn">Search</button></a>
+        <a href="/"><button id="logout">Log out</button></a>
       </div>
     </div>
     <div id="main">
@@ -626,7 +625,7 @@
               },
               body: JSON.stringify({
                 isbn: isbn,
-                idUser: 3,
+                idUser: 2,
                 readStatus: 0,
                 startTime: time,
               }),
@@ -644,7 +643,7 @@
               },
               body: JSON.stringify({
                 isbn: isbn,
-                idUser: 3,
+                idUser: 2,
               }),
             })
               .then((res) => res.json())
@@ -663,14 +662,14 @@
             '<input id="swal-input1" class="swal2-input" type="number" min="1" placeholder="시작 페이지">' +
             '<input id="swal-input2" class="swal2-input" type="number" min="1" placeholder="끝 페이지">' +
             "<p>리뷰</p>" +
-            '<textarea id="text-review" cols="56" rows="5"></textarea>' +
+            '<textarea id="text-review" cols="50" rows="5"></textarea>' +
             "<p>인용문</p>" +
-            '<textarea id="text-quote" cols="56" rows="2"></textarea>',
+            '<textarea id="text-quote" cols="50" rows="2"></textarea>',
           focusConfirm: false,
           preConfirm: () => {
             return {
               isbn: isbn,
-              idUser: 3,
+              idUser: 2,
               quote: document.getElementById("text-quote").value,
               content: document.getElementById("text-review").value,
               startPage: Number(document.getElementById("swal-input1").value),
@@ -713,7 +712,7 @@
               },
               body: JSON.stringify({
                 isbn: isbn,
-                idUser: 3,
+                idUser: 2,
                 readStatus: 1,
                 endTime: time,
               }),

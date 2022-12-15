@@ -42,7 +42,9 @@
       padding-right: 40px;
       padding-top: 120px;
       padding-bottom: 80px;*/
-      margin-top: 30px;
+      margin-top: 20px;
+      margin-left: 10px;
+      margin-right: 10px;
       font-size: 30px;
       text-align: center;
       justify-content: center;
@@ -220,7 +222,7 @@
             },
             body: JSON.stringify({
               isbn: p_isbn,
-              idUser: 3,
+              idUser: 2,
             }),
           })
             .then((res) => console.log(res))
