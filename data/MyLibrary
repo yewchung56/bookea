@@ -28,7 +28,6 @@
   .imgList {
     width: 1400px;
     flex-direction: row;
-
     justify-content: space-around;
     align-items: center;
   }
@@ -39,6 +38,7 @@
     margin: auto;
   }
   .imgC {
+    filter: drop-shadow(5px 5px 5px rgb(81, 81, 81)); 
     display: inline;
     padding-top: 10px;
     width: auto;
@@ -183,7 +183,7 @@
     </div>
   </div>
   <div class="center">
-    <p style="padding-top: 10px; padding-left: 10px; color: #2358e1">서재</p>
+    <p style=" font-family:EF_Diary;font-size: 30px;padding-top: 10px; padding-left: 10px; color: #2358e1">서재</p>
     <div class="imgList">
       <div class="imgC">
       </div>

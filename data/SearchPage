@@ -38,18 +38,20 @@
       align-items: center;
     }
     h1 {
+      /*padding-left: 40px;
+      padding-right: 40px;
+      padding-top: 120px;
+      padding-bottom: 80px;*/
+      margin-top: 30px;
+      font-size: 30px;
+      text-align: center;
+      justify-content: center;
+      text-decoration-line: none;
       color: #2358e1;
-      font-family: "EF_Diary";
-      font-style: normal;
-      font-weight: 400;
-      font-size: 28.4444px;
-      line-height: 32px;
-      /* identical to box height */
       display: flex;
       align-items: center;
       text-align: center;
       letter-spacing: -0.015em;
-      padding: 30px;
     }
     h2 {
       margin: 40px;
