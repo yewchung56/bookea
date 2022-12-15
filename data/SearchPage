@@ -225,6 +225,40 @@
 
     <script>
       $(document).ready(function () {
+        fetch("http://localhost:3100/books", {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+            },
+        })
+          .then((res) => res.json())
+          .then((obj) => {console.log(obj)
+            $("div").html("");
+            obj.res.forEach(res => {
+              
+              const dateArr = res.publishDate.split("T");
+              var $result = $(
+                "<back>"+
+                   `<img id ="thumb" src = `+ res.thumnail+`/>` +
+                   "<p>" +
+                  res.title +
+                  "<p>" +
+                  res.authors +
+                  "<p>" +
+                  res.publisher +
+                  "<p>" +
+                  dateArr[0] +
+                  "<p>" +
+                  `<i id="wish" class="fa-solid fa-cart-shopping fa-2x" onclick="hello(${res.isbn})"></i>` +
+                  "</back>"
+              );
+              $("div").append($result);
+              $("div").append("<hr>"); 
+            })
+          })
+          .catch((error) => console.log("error:", error));
+
+
         var pageNum = 1;
         $("#search").click(function () {
           $("div").html("");
