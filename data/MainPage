@@ -149,7 +149,6 @@
       .swal2-popup{
         border-radius: 10px;
         background-color: #82c5ff;
-
       }
       .swal2-show {
         border-radius: 10px;
