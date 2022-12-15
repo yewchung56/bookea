@@ -2,7 +2,10 @@
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script src="alert/dist/sweetalert-dev.js"></script>
 <link rel="stylesheet" href="alert/dist/sweetalert.css" />
-
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script src="sweetalert2.all.min.js"></script>
+    <script src="sweetalert2.min.js"></script>
+    <link rel="stylesheet" href="sweetalert2.min.css">
 <style>
   .center {
     width: 100%;
@@ -26,8 +29,9 @@
     align-items: center;
   }
   img {
-    padding-top: 20px;
+    padding-top: 10px;
     padding-left: 40px;
+    padding-bottom: 10px;
     margin: auto;
   }
   .imgC {
@@ -130,11 +134,14 @@
     font-size: 15px;
     border-color: #f3dc63;
   }
+  #review-modal {
+    overflow:auto;
+  }
 </style>
 
 <body>
   <script>
-    fetch("http://112.170.146.135:3100/userbooks/fin/3", {
+    fetch("http://112.170.146.135:3100/userbooks/fin/2", {
       //2번으로 바꾸기
       method: "GET",
       headers: {
@@ -175,10 +182,6 @@
     <p style="padding-top: 10px; padding-left: 10px; color: #2358e1">서재</p>
     <div class="imgList">
       <div class="imgC">
-        <img
-          src="https://search1.kakaocdn.net/thumb/R120x174.q85/?fname=http%3A%2F%2Ft1.daumcdn.net%2Flbook%2Fimage%2F923727%3Ftimestamp%3D20220103152724"
-          alt="책 이미지"
-        />
       </div>
     </div>
 
@@ -196,41 +199,38 @@
                         },
                         body: JSON.stringify({
                             isbn: isbn,
-                            idUser: 3,
+                            idUser: 2,
                         }),
                         })
                         .then((res) => res.json())
                         .then((obj) => {
+                          var list = []
                             obj.res.forEach((res)=> {
                                 console.log(res.content);
-
+                                
                                 const date = res.createdDate.split("T")[0]
                                 const content = res.content
                                 const quote = res.quote
-                                function repeat(date, content, quote) {
-                                    `
-                                        날짜: ${date}
-                                        리뷰: ${content}
-                                        인용구: ${quote}
-                                    `
-                                }
                                 
-                                    swal({
+                                  var review = '<div>'+
+                                    `<p>날짜: ${date}</p>`+
+                                        `<p>리뷰: ${content}</p>`+
+                                        `<p>인용구: ${quote}</p>`+
+                                        '</div>'
+                                  list.push(review)
+                                }
+                              )
+                                    Swal.fire({
                                         title: title,
-                                        text: 
-                                        `
-                                        날짜: ${date}
-                                        리뷰: ${res.content}
-                                        인용구: ${obj.res[0].quote}
-                                        `,
-                                        closeOnClickOutside: false,
-                                        dangerMode: true,
-                                        button: "닫기",
+                                        html:
+                                          '<div id="review-modal">'+  
+                                          list + '</div>',
+                                        width: 600
                                     }).then(result=>{
-                                    
+                                      console.log(list)
                                     });
                                 
-                            })
+                            
                             
                             
                         })
