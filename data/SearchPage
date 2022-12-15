@@ -1,8 +1,7 @@
-
 <head>
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
   <script src="alert/dist/sweetalert-dev.js"></script>
-  <link rel="stylesheet" href="alert/dist/sweetalert.css">
+  <link rel="stylesheet" href="alert/dist/sweetalert.css" />
   <meta charset="utf-8" />
   <meta content="width=device-width, initial-scale=1.0" />
   <script src="https://use.fontawesome.com/releases/v6.2.1/js/all.js"></script>
@@ -11,218 +10,267 @@
     header {
       background: white;
       border-color: #2358e1;
-      width:100%;
-      height:80px;
+      height: 80px;
       display: flex;
       align-items: center;
       position: sticky;
-      top:0;
-    
+      top: 0;
     }
-    back{
-      
-      width:100%;
+    back {
       display: flex;
-      justify-content: space-evenly;
+      justify-content: space-between;
       align-items: center;
+    }
+    #content {
+      margin: 10px 50px 10px;
+      justify-content: space-evenly;
+      padding: 50px;
+      font-family: "Comfortaa";
+      background-color: #fffbeb;
+    }
+    #book {
+      justify-content: space-between;
     }
     body {
       background: #f3dc63;
       margin: 0;
+      display: grid;
       align-items: center;
     }
     h1 {
+      /*padding-left: 40px;
+      padding-right: 40px;
+      padding-top: 120px;
+      padding-bottom: 80px;*/
+      margin-top: 20px;
+      margin-left: 10px;
+      margin-right: 10px;
+      font-size: 30px;
+      text-align: center;
+      justify-content: center;
+      text-decoration-line: none;
       color: #2358e1;
-      font-family: EF-다이어리;
-      font-style: normal;
-      font-weight: 400;
-      font-size: 28.4444px;
-      line-height: 32px;
-      /* identical to box height */
       display: flex;
       align-items: center;
       text-align: center;
       letter-spacing: -0.015em;
-      padding: 30px;
     }
-    h2{
+    h2 {
       margin: 40px;
       color: #2358e1;
-      font-family: 'Comfortaa';
+      font-family: "Comfortaa";
       font-weight: 400;
       font-size: 18px;
       line-height: 32px;
       display: flex;
       align-items: flex-start;
     }
-    h3{
-      margin: 40px;
-      font-family: 'Comfortaa';
+    h3 {
+      justify-items: space-between;
+      margin-left: 80px;
+      font-family: "Comfortaa";
       font-weight: 400;
       font-size: 16px;
       line-height: 32px;
-      
     }
-    h5{
-      margin: 0px 200px 0px 200px;
-      font-family: 'Comfortaa';
+    h5 {
+      margin: 0px 50px 0px 50px;
+      font-family: "Comfortaa";
       font-weight: 400;
       font-size: 16px;
       line-height: 32px;
       align-items: center;
-      
     }
-    h4{
+    h4 {
       margin-left: 40px;
-      font-family: 'Comfortaa';
+      font-family: "Comfortaa";
       font-weight: 4;
       font-size: 14px;
-      
     }
-    strong{
+    strong {
       float: left;
-      font-family: 'Comfortaa';
+      font-family: "Comfortaa";
       font-style: normal;
       font-weight: 300;
       font-size: 16px;
       line-height: 22px;
       display: flex;
       /* align-items:flex-start;
-      text-align: center; */
+          text-align: center; */
     }
-    input{
+    input {
       line-height: 18px;
-      width:700px;
-      font-family: 'Comfortaa';
-      font-size: 14px;
+      width: 700px;
+      font-family: "EF_Diary";
+      font-size: 16px;
       align-items: center;
       padding: 10px;
       border-color: #2358e1;
       border-radius: 40px;
       display: flex;
     }
-    #search{
+    #search {
       margin: 20px;
       width: 100px;
-      font-family:'Comfortaa';
-      color:#f3dc63;
+      font-family: "Comfortaa";
+      color: #f3dc63;
       background-color: #2358e1;
       line-height: 30px;
       border-radius: 5px;
-      
     }
-    #content{
-      font-family: 'Comfortaa';
-      margin: 50px;
-      background-color: #FFFBEB;
-      width: 90%;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-around;
-    }
-    #logout{
+    #logout {
       margin: 30px;
       width: 100px;
-      font-family:'Comfortaa';
-      color:#2358e1;
-      background-color: #F3DC63;
+      font-family: "Comfortaa";
+      color: #2358e1;
+      background-color: #f3dc63;
       line-height: 30px;
       border-radius: 5px;
     }
-    #hi{
+    #hi {
       flex-direction: row;
     }
-    hr{
-      margin: 20px;
+    #use {
+      justify-self: unset;
+      align-self: center;
     }
-   /*  result{
-      font-family: 'Comfortaa';
-      margin: 40px;
-      display: flex;
-      justify-content: space-between;
-    } */
-    p{
-      text-align: center;
+    hr {
+      margin: 5px;
     }
-    wish{
+    #thumb {
+      margin-left: 30px;
+      display: grid;
+      justify-content: space-evenly;
+      align-items: center;
+    }
+    p {
+      width: 80px;
     }
   </style>
 </head>
 
 <body>
   <header>
-  <h1>BOOKEA</h1>
-    <input id="query" type="text" placeholder="검색어를 입력해 주세요"/>
+    <a href="/?id=MainPage" style="text-decoration-line: none"
+      ><h1>BOOKEA</h1></a
+    >
+    <input id="query" type="text" placeholder="검색어를 입력해 주세요" />
     <button id="search">SEARCH</button>
-    <div id="user">
-      <i class= "fa-solid fa-book fa-2x"></i>
-      <button id ="logout">LOGOUT</button>
-    </div>
-    
-</header>
-<p></p>
-<section id="content">
-  <h2>검색결과</h2>
-  <back>
-  <h3>책 표지</h3>
-  <h5>책 제목</h5>
-  <h3>저자</h3>
-  <h3>출판사</h3>
-  <h3>발행일</h3>
-  <h3>위시리스트에 담기</h3>
-  </back>
-  <hr>
-<div></div>
-  <script
-    src="https://code.jquery.com/jquery-3.6.1.js"
-    integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
-    crossorigin="anonymous"
-  ></script>
-  <script type="text/javascript">
-  function hello()  {
-    swal("위시리스트에 추가되었습니다.","","success");
-  }
-</script>
+    <a href="/?id=MyLibrary"><i class="fa-solid fa-book fa-2x"></i></a>
+    <button id="logout">LOGOUT</button>
+  </header>
+  <p></p>
+  <section id="content">
+    <h2>검색결과</h2>
+    <back>
+      <h3>책 표지</h3>
+      <h3>책 제목</h3>
+      <h3>저자</h3>
+      <h3>출판사</h3>
+      <h3>발행일</h3>
+      <h3>위시리스트에 담기</h3>
+    </back>
+    <hr />
+    <div id="book"></div>
+    <script
+      src="https://code.jquery.com/jquery-3.6.1.js"
+      integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
+      crossorigin="anonymous"
+    ></script>
+    <script type="text/javascript">
+      function hello(obj) {
+        swal(" 책이 위시리스트에 추가되었습니다.", "", "success");
 
-  <script>
-    $(document).ready(function () {
-      var pageNum = 1;
-      $("#search").click(function () {
-        $("div").html("");
+        var p_isbn = JSON.stringify(obj);
+        console.log(p_isbn);
 
         $.ajax({
           method: "GET",
-          url: "https://dapi.kakao.com/v3/search/book?target=title",
-          data: { query: $("#query").val(), page: pageNum },
+          url: "https://dapi.kakao.com/v3/search/book?target=isbn",
+          data: { query: p_isbn, page: 1 },
           headers: {
-            Authorization:"KakaoAK 5032971dfe6ef4c1396c474be397c09c",
+            Authorization: "KakaoAK 5032971dfe6ef4c1396c474be397c09c",
           },
-        }).done(function (msg) {
-          console.log(msg.documents[0].title);
-          console.log(msg.documents[0].thumbnail);
-          console.log(msg.documents[0].authors);
-          for (var i = 0; i < 10; i++) {
-            const dateArr = msg.documents[i].datetime.split('T');
-            var $result = $("<back>"+"<img src = '" + msg.documents[i].thumbnail + "'/>"+"<p>"+
-                msg.documents[i].title +"<p>"+
-                msg.documents[i].authors+"<p>"+
-                  msg.documents[i].publisher+"<p>"+
-                dateArr[0]+"<p>"+
-                `<i id="wish" class="fa-solid fa-cart-shopping fa-2x" onclick="hello()"></i>`+"</back>"); 
-            $("div").append(
-              $result
-            );
-      $("div").append("<hr>");
-          }
+        }).done((result) => {
+          var c_publishDate = result.documents[0].datetime.split("T")?.[0];
+          console.log(result.documents[0]);
+
+          var book = {
+            isbn: p_isbn,
+            thumnail: result.documents[0].thumbnail,
+            title: result.documents[0].title,
+            publisher: result.documents[0].publisher,
+            authors: result.documents[0].authors,
+            publishDate: c_publishDate,
+          };
+          console.log(book);
+
+          fetch("http://112.170.146.135:3100/books", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(book),
+          })
+            .then((res) => console.log(res))
+            .catch((error) => console.log("error:", error));
+
+          fetch("http://112.170.146.135:3100/userbooks", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              isbn: p_isbn,
+              idUser: 2,
+            }),
+          })
+            .then((res) => console.log(res))
+            .catch((error) => console.log("error:", error));
         });
-      });
-    
-      $(window).scroll(function () {
-        if (
-          Math.ceil($(window).scrollTop()) + $(window).height() >=
-          $(document).height()
-        ) {
-          pageNum++;
+      }
+    </script>
+
+    <script>
+      $(document).ready(function () {
+        fetch("http://112.170.146.135:3100/books", {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+          .then((res) => res.json())
+          .then((obj) => {
+            console.log(obj);
+            $("div").html("");
+            obj.res.forEach((res) => {
+              const dateArr = res.publishDate.split("T");
+              var $result = $(
+                "<back>" +
+                  `<img id ="thumb" src = ` +
+                  res.thumnail +
+                  `/>` +
+                  "<p>" +
+                  res.title +
+                  "<p>" +
+                  res.authors +
+                  "<p>" +
+                  res.publisher +
+                  "<p>" +
+                  dateArr[0] +
+                  "<p>" +
+                  `<i id="wish" class="fa-solid fa-cart-shopping fa-2x" onclick="hello(${res.isbn})"></i>` +
+                  "</back>"
+              );
+              $("div").append($result);
+              $("div").append("<hr>");
+            });
+          })
+          .catch((error) => console.log("error:", error));
+
+        var pageNum = 1;
+        $("#search").click(function () {
+          $("div").html("");
 
           $.ajax({
             method: "GET",
@@ -232,25 +280,82 @@
               Authorization: "KakaoAK 5032971dfe6ef4c1396c474be397c09c",
             },
           }).done(function (msg) {
-            console.log(msg);
+            // console.log(msg.documents[0].title);
+            // console.log(msg.documents[0].thumbnail);
+            // console.log(msg.documents[0].authors);
             for (var i = 0; i < 10; i++) {
-              const dateArr = msg.documents[i].datetime.split('T');
-              var $result = $("<back>"+"<img src = '" + msg.documents[i].thumbnail + "'/>"+"<p>"+
-                msg.documents[i].title +"<p>"+
-                msg.documents[i].authors+"<p>"+
-                  msg.documents[i].publisher+"<p>"+
-                dateArr[0]+"<p>"+
-                    `<i class="fa-solid fa-cart-shopping fa-2x" onclick="hello()"></i>`+"</back>");
-                
-            $("div").append(
-              $result
-            );
-            $("div").append("<hr>");
+              const dateArr = msg.documents[i].datetime.split("T");
+
+              const b_isbn = msg.documents[i].isbn.split(" ")?.[1];
+
+              const b_publisher = msg.documents[i].publisher;
+
+              var $result = $(
+                "<back>" +
+                  `<img id ="thumb" src = ` +
+                  msg.documents[i].thumbnail +
+                  `/>` +
+                  "<p>" +
+                  msg.documents[i].title +
+                  "<p>" +
+                  msg.documents[i].authors +
+                  "<p>" +
+                  msg.documents[i].publisher +
+                  "<p>" +
+                  dateArr[0] +
+                  "<p>" +
+                  `<i id="wish" class="fa-solid fa-cart-shopping fa-2x" onclick="hello(${b_isbn})"></i>` +
+                  "</back>"
+              );
+              $("div").append($result);
+              $("div").append("<hr>");
             }
           });
-        }
+        });
+
+        $(window).scroll(function () {
+          if (
+            Math.ceil($(window).scrollTop()) + $(window).height() >=
+            $(document).height()
+          ) {
+            pageNum++;
+
+            $.ajax({
+              method: "GET",
+              url: "https://dapi.kakao.com/v3/search/book?target=title",
+              data: { query: $("#query").val(), page: pageNum },
+              headers: {
+                Authorization: "KakaoAK 5032971dfe6ef4c1396c474be397c09c",
+              },
+            }).done(function (msg) {
+              console.log(msg);
+              for (var i = 0; i < 10; i++) {
+                const dateArr = msg.documents[i].datetime.split("T");
+                var $result = $(
+                  "<back>" +
+                    `<img id ="thumb" src = ` +
+                    msg.documents[i].thumbnail +
+                    `/>` +
+                    "<p>" +
+                    msg.documents[i].title +
+                    "<p>" +
+                    msg.documents[i].authors +
+                    "<p>" +
+                    msg.documents[i].publisher +
+                    "<p>" +
+                    dateArr[0] +
+                    "<p>" +
+                    `<i id="wish" class="fa-solid fa-cart-shopping fa-2x" onclick="hello()"></i>` +
+                    "</back>"
+                );
+
+                $("div").append($result);
+                $("div").append("<hr>");
+              }
+            });
+          }
+        });
       });
-    });
-  </script>
+    </script>
   </section>
 </body>

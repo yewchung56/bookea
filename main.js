@@ -1,3 +1,4 @@
+const fetch = require("node-fetch");
 var http = require("http");
 var fs = require("fs");
 var url = require("url");
@@ -145,15 +146,13 @@ var app = http.createServer(function (request, response) {
             h1 > a:visited {
               color: #2358e1;
             }
-            
+
       </style>
       <head>
         <title>WEB1 - ${title}</title>
         <meta charset="utf-8">
       </head>
       <body>
-        <h1><a href="/">BOOKEA</a></h1>
-        
         <p>${description}</p>
       </body>
       </html>
@@ -175,10 +174,25 @@ var app = http.createServer(function (request, response) {
       //들어올 정보가 더이상 없을 때 end에 해당되는 callback이 수신되었을 때 정보가 끝났음을 알 수 있음
       var post = qs.parse(body); //parse 함수를 통해 정보를 객체화
       var id = post.id;
+      var pwd = post.password;
       console.log(post.id); //post를 통해 전송된 데이터를 가져올 수 있음
       console.log(post.password);
       console.log(post.passwordchk);
+      var userdata = {
+        username: id,
+        pwd: pwd,
+      };
+      fetch("http://112.170.146.135:3100/readers", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(userdata),
+      })
+        .then((response) => console.log(response))
+        .catch((error) => console.log("error:", error));
     });
+
     response.writeHead(302, { Location: "/?id=Login" }); //로그인 페이지로 이동 or 홈으로 이동?
     response.end("success");
   } else if (pathname === "/login") {
@@ -191,11 +205,37 @@ var app = http.createServer(function (request, response) {
       //들어올 정보가 더이상 없을 때 end에 해당되는 callback이 수신되었을 때 정보가 끝났음을 알 수 있음
       var post = qs.parse(body); //parse 함수를 통해 정보를 객체화
       var id = post.id;
-      console.log(post.id); //post를 통해 전송된 데이터를 가져올 수 있음
-      console.log(post.password);
+      var pwd = post.password;
+      //console.log(post.id); //post를 통해 전송된 데이터를 가져올 수 있음
+      //console.log(post.password);
+      var userdata = {
+        username: id,
+        pwd: pwd,
+      };
+      fetch("http://112.170.146.135:3100", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(userdata),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          //console.log(data.idUser);
+          if (data.message === "login") {
+            //console.log(data.idUser);
+            response.writeHead(302, { Location: "/?id=MainPage" }); //로그인 페이지로 이동 or 홈으로 이동?
+            response.end("success");
+          } else {
+            response.writeHead(404);
+            response.end("Login error");
+          }
+        })
+        .catch((error) => console.log("error:", error));
     });
-    response.writeHead(302, { Location: "/?id=MainPage" }); //로그인 페이지로 이동 or 홈으로 이동?
-    response.end("success");
+
+    // response.writeHead(302, { Location: "/?id=MainPage" }); //로그인 페이지로 이동 or 홈으로 이동?
+    // response.end("success");
   } else {
     response.writeHead(404);
     response.end("Not found");
