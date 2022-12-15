@@ -39,6 +39,17 @@
       align-items: center;
     }
     h1 {
+      /*padding-left: 40px;
+      padding-right: 40px;
+      padding-top: 120px;
+      padding-bottom: 80px;*/
+      margin-top: 20px;
+      margin-left: 10px;
+      margin-right: 10px;
+      font-size: 35px;
+      text-align: center;
+      justify-content: center;
+      text-decoration-line: none;
       color: #2358e1;
       font-style: normal;
       font-weight: 700;
@@ -50,7 +61,6 @@
       align-items: center;
       text-align: center;
       letter-spacing: -0.015em;
-      padding: 30px;
     }
     h2 {
       margin: 40px;

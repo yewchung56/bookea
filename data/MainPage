@@ -471,10 +471,11 @@
     <div id="header">
       <h1 id="title">BOOKEA</h1>
       <div id="search">
-        <a href="/?id=SearchPage"><button id="searchBtn">Search</button></a>
+        
       </div>
       <div id="user">
         <a href="/?id=MyLibrary"><i id="bookBtn" class="fa-solid fa-book fa-2x"></i></a>
+        <a href="/?id=SearchPage"><button id="searchBtn">Search</button></a>
         <button id="logout">Log out</button>
       </div>
     </div>
