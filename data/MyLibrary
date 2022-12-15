@@ -7,6 +7,25 @@
     <script src="sweetalert2.min.js"></script>
     <link rel="stylesheet" href="sweetalert2.min.css">
 <style>
+  .swal2-styled.swal2-confirm{
+        font-size: 20px;
+        border:10px;
+        border-radius: 8px;
+        color: black;
+       background-color: #FFEE95;
+      }
+  .swal2-popup{
+        border-radius: 10px;
+        background-color: #fff9d8;
+  }
+  .swal2-header{
+
+    background-color: #fae166;
+    border-radius: 8px;
+  }
+  .swal2-title{
+    margin:10px;
+  }
   .center {
     width: 100%;
     height: 90%;
@@ -213,9 +232,9 @@
                                 const quote = res.quote
                                 
                                   var review = '<div>'+
-                                    `<p>날짜: ${date}</p>`+
-                                        `<p>리뷰: ${content}</p>`+
-                                        `<p>인용구: ${quote}</p>`+
+                                    `<p style="font-size:22px">날짜: ${date}</p>`+
+                                        `<p style="font-size:22px">리뷰: ${content}</p>`+
+                                        `<p style="font-size:22px">인용구: ${quote}</p>`+
                                         '</div>'
                                   list.push(review)
                                 }

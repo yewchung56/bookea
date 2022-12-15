@@ -116,6 +116,57 @@
     </script>
     <style>
       /* section calendar */
+      textarea{
+        margin-bottom: 20px;
+        border-radius: 8px;
+        border-color: #FFFF;
+      }
+      .swal2-styled.swal2-deny {
+        background-color: #FFEE95;
+        border-radius: 8px;
+        font-size: 20px;
+        color: black;
+        border:10px;
+        }
+      .swal2-header{
+        background-color: #FFEE95;
+        border-radius: 8px;
+      }
+      .swal2-styled.swal2-cancel {
+        font-size: 20px;
+        border:10px;
+        border-radius: 8px;
+        color: black;
+       background-color: #FFEE95;
+      }
+      .swal2-styled.swal2-confirm{
+        font-size: 20px;
+        border:10px;
+        border-radius: 8px;
+        color: black;
+       background-color: #FFEE95;
+      }
+      .swal2-popup{
+        border-radius: 10px;
+        background-color: #82c5ff;
+
+      }
+      .swal2-show {
+        border-radius: 10px;
+      }
+      .swal2-title{
+        padding-top: 10px;
+        font-family: "EF_Diary";
+        color:#1646cc;
+        font-weight: 600;
+      }
+      .swal2-modeal{
+        size: 100px;
+      }
+      .swal2-content{
+        background-color:#FFEE95;
+        border-radius: 8px;
+      }
       .sec_cal {
         width: 100%;
         font-family: "NotoSansR";
@@ -448,8 +499,9 @@
           border: 1px solid white;
         }
         .swal-title {
+          font-family: "EF_Diary";
           margin: 0px;
-          font-size: 16px;
+          font-size: 20px;
           box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.21);
           margin-bottom: 28px;
         }
@@ -460,6 +512,17 @@
         .review-book {
           margin: 0px 10px 0px 0px;
         }
+        .text-quote{
+          margin-bottom: 100px;
+        }
+        #swal-input1{
+          margin-right: 140px;
+          max-width: 350px;
+        }
+        #swal-input2{
+          max-width: 350px;
+        }
+        
 
     </style>
 </head>
@@ -512,7 +575,7 @@
     </div>
 
     <script>
-      fetch("http://localhost:3100/userbooks/wish/2", {
+      fetch("http://112.170.146.135:3100/userbooks/wish/2", {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
@@ -534,7 +597,7 @@
           .catch((error) => console.log("error:", error));
         
         
-          fetch("http://localhost:3100/userbooks/reading/2", {
+          fetch("http://112.170.146.135:3100/userbooks/reading/2", {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
@@ -639,16 +702,22 @@
       }
       const answering =  async(isbn)=> {
         const { value: formValues } = await Swal.fire({
+          showCancelButton: true,
           title: '감상문',
           html:
-            '<input id="swal-input1" class="swal2-input" type="number" min="1" placeholder="시작 페이지">' +
-            '<input id="swal-input2" class="swal2-input" type="number" min="1" placeholder="끝 페이지">'+
-            '<p>리뷰</p>'+
-            '<textarea id="text-review" cols="56" rows="5"></textarea>' +
-            '<p>인용문</p>'+
-            '<textarea id="text-quote" cols="56" rows="2"></textarea>' 
+          
+            '<input id="swal-input1" class="swal2-input" type="number" min="1" placeholder="시작 페이지" style="background-color: #FFFF ">' +
+            
+            '<input id="swal-input2" class="swal2-input" type="number" min="1" placeholder="끝 페이지" style="background-color: #FFFF ">'+
+          
+            '<p style="font-size:22px">리뷰</p>'+
+            '<textarea id="text-review" cols="65" rows="5" style="font-size:20px"></textarea>' +
+            '<p style="font-size:22px">인용문</p>'+
+            '<textarea id="text-quote" cols="65" rows="3" style="font-size:20px"></textarea>' 
             ,
           focusConfirm: false,
+          height: '1000px',
+          width: '1000px',
           preConfirm: () => {
             return {
               isbn: isbn,
@@ -663,7 +732,7 @@
         })
 
         if (formValues) {
-          fetch("http://localhost:3100/reviews", {
+          fetch("http://112.170.146.135:3100/reviews", {
               method: "POST",
               headers: {
                 "Content-Type": "application/json",
