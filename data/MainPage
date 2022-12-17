@@ -129,7 +129,6 @@
         border:10px;
         }
       .swal2-header{
-        background-color: #FFEE95;
         border-radius: 8px;
       }
       .swal2-styled.swal2-cancel {
