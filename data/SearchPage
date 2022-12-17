@@ -39,10 +39,6 @@
       align-items: center;
     }
     h1 {
-      /*padding-left: 40px;
-      padding-right: 40px;
-      padding-top: 120px;
-      padding-bottom: 80px;*/
       margin-top: 30px;
       font-size: 30px;
       text-align: center;
@@ -53,7 +49,7 @@
       align-items: center;
       text-align: center;
       letter-spacing: -0.015em;
-            }
+    }
     h2 {
       margin: 40px;
       color: #2358e1;
@@ -276,9 +272,6 @@
               Authorization: "KakaoAK 5032971dfe6ef4c1396c474be397c09c",
             },
           }).done(function (msg) {
-            // console.log(msg.documents[0].title);
-            // console.log(msg.documents[0].thumbnail);
-            // console.log(msg.documents[0].authors);
             for (var i = 0; i < 10; i++) {
               const dateArr = msg.documents[i].datetime.split("T");
 
